@@ -1,4 +1,4 @@
-﻿namespace NotificationCentre.SideBar
+﻿namespace NotificationCentre.SideBar.Views
 {
     /// <summary>
     /// Interaction logic for SideBarWindow.xaml

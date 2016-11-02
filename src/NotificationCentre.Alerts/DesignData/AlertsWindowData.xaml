@@ -1,0 +1,11 @@
+﻿<viewModels:AlertsViewModel xmlns:viewModels="clr-namespace:NotificationCentre.Alerts.ViewModels"
+                            xmlns:models="clr-namespace:NotificationCentre.Alerts.Models">
+    <viewModels:AlertsViewModel.Alerts>
+        <models:AlertModel Title="Title"
+                           Content="Content"/>
+        <models:AlertModel Title="Title 2"
+                           Content="Content" />
+        <models:AlertModel Title="Title 3"
+                           Content="Content" />
+    </viewModels:AlertsViewModel.Alerts>
+</viewModels:AlertsViewModel>
