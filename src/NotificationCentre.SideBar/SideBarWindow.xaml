@@ -1,0 +1,54 @@
+﻿<Window x:Class="NotificationCentre.SideBar.SideBarWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:system="clr-namespace:System;assembly=mscorlib"
+        mc:Ignorable="d"
+        Title="SideBarWindow"
+        AllowsTransparency="True"
+        WindowStyle="None"
+        ResizeMode="NoResize"
+        Background="Transparent"
+        d:DesignWidth="320"
+        d:DesignHeight="600"
+        Opacity="0.95">
+    <Window.Resources>
+        <system:Double x:Key="Width">320</system:Double>
+    </Window.Resources>
+    <Border>
+        <Border.RenderTransform>
+            <TranslateTransform X="{StaticResource Width}"/>
+        </Border.RenderTransform>
+        <Border.Style>
+            <Style>
+                <Style.Triggers>
+                    <DataTrigger Binding="{Binding IsOpen}" Value="True">
+                        <DataTrigger.EnterActions>
+                            <BeginStoryboard>
+                                <Storyboard TargetProperty="RenderTransform.(TranslateTransform.X)">
+                                    <DoubleAnimation To="0" Duration="0:0:0.5">
+                                        <DoubleAnimation.EasingFunction>
+                                            <QuarticEase EasingMode="EaseOut"/>
+                                        </DoubleAnimation.EasingFunction>
+                                    </DoubleAnimation>
+                                </Storyboard>
+                            </BeginStoryboard>
+                        </DataTrigger.EnterActions>
+                        <DataTrigger.ExitActions>
+                            <BeginStoryboard>
+                                <Storyboard TargetProperty="RenderTransform.(TranslateTransform.X)">
+                                    <DoubleAnimation To="{StaticResource Width}" Duration="0:0:0.5">
+                                        <DoubleAnimation.EasingFunction>
+                                            <QuarticEase EasingMode="EaseIn"/>
+                                        </DoubleAnimation.EasingFunction>
+                                    </DoubleAnimation>
+                                </Storyboard>
+                            </BeginStoryboard>
+                        </DataTrigger.ExitActions>
+                    </DataTrigger>
+                </Style.Triggers>
+            </Style>
+        </Border.Style>
+    </Border>
+</Window>
