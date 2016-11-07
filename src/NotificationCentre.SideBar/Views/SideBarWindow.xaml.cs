@@ -3,7 +3,7 @@
     /// <summary>
     /// Interaction logic for SideBarWindow.xaml
     /// </summary>
-    public partial class SideBarWindow
+    internal partial class SideBarWindow : ISideBarWindow
     {
         public SideBarWindow()
         {

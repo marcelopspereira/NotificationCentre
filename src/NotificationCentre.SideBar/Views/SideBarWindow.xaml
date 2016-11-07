@@ -4,6 +4,7 @@
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:system="clr-namespace:System;assembly=mscorlib"
+        xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
         mc:Ignorable="d"
         AllowsTransparency="True"
         Background="Transparent"
@@ -12,12 +13,22 @@
         Title="SideBar"
         Topmost="True"
         WindowStyle="None"
+        TextElement.Foreground="{DynamicResource MaterialDesignBody}"
+        TextElement.FontWeight="Regular"
+        TextElement.FontSize="13"
+        TextOptions.TextFormattingMode="Ideal"
+        TextOptions.TextRenderingMode="Auto"
+        FontFamily="{DynamicResource MaterialDesignFont}"
+        Top="0"
+        Width="320"
         d:DesignWidth="320"
         d:DesignHeight="600"
-        d:DataContext="{d:DesignData Source=../DesignData/SideBarWindowData.xaml}">
+        d:DataContext="{d:DesignData Source=../DesignData/SideBarWindowData.xaml}" 
+        x:ClassModifier="internal">
     <Window.Resources>
         <system:Double x:Key="Width">320</system:Double>
-        <Storyboard x:Key="EnterAnimation" TargetProperty="RenderTransform.(TranslateTransform.X)">
+        <Storyboard x:Key="EnterAnimation"
+                    TargetProperty="RenderTransform.(TranslateTransform.X)">
             <DoubleAnimation To="0"
                              Duration="0:0:0.5">
                 <DoubleAnimation.EasingFunction>
@@ -25,7 +36,8 @@
                 </DoubleAnimation.EasingFunction>
             </DoubleAnimation>
         </Storyboard>
-        <Storyboard x:Key="ExitAnimation" TargetProperty="RenderTransform.(TranslateTransform.X)">
+        <Storyboard x:Key="ExitAnimation"
+                    TargetProperty="RenderTransform.(TranslateTransform.X)">
             <DoubleAnimation To="{StaticResource Width}"
                              Duration="0:0:0.5">
                 <DoubleAnimation.EasingFunction>
@@ -34,7 +46,9 @@
             </DoubleAnimation>
         </Storyboard>
     </Window.Resources>
-    <Border Opacity="0.95">
+    <Border Background="{DynamicResource MaterialDesignPaper}"
+            BorderThickness="1,0,0,0"
+            BorderBrush="Black">
         <Border.RenderTransform>
             <TranslateTransform X="{StaticResource Width}"/>
         </Border.RenderTransform>
@@ -52,5 +66,30 @@
                 </Style.Triggers>
             </Style>
         </Border.Style>
+        <materialDesign:ColorZone Mode="Standard"
+                                  Padding="8 4 8 4"
+                                  CornerRadius="2"
+                                  Panel.ZIndex="1"
+                                  Margin="10"
+                                  materialDesign:ShadowAssist.ShadowDepth="Depth1">
+            <Grid>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="Auto" />
+                    <ColumnDefinition Width="*" />
+                    <ColumnDefinition Width="Auto" />
+                </Grid.ColumnDefinitions>
+                <Button Style="{DynamicResource MaterialDesignToolButton}">
+                    <materialDesign:PackIcon Kind="Magnify"
+                                             Opacity=".56" />
+                </Button>
+                <TextBox Grid.Column="1"
+                         Margin="8 0 0 0"
+                         materialDesign:HintAssist.Hint="Search"
+                         materialDesign:TextFieldAssist.DecorationVisibility="Hidden"
+                         BorderThickness="0"
+                         MinWidth="200"
+                         VerticalAlignment="Center" />
+            </Grid>
+        </materialDesign:ColorZone>
     </Border>
 </Window>

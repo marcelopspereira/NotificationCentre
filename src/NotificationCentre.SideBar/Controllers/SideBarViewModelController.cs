@@ -1,4 +1,6 @@
-﻿using System.ComponentModel.Composition;
+﻿using System;
+using System.ComponentModel.Composition;
+using System.Reactive.Linq;
 using NotificationCentre.SideBar.ViewModels;
 
 namespace NotificationCentre.SideBar.Controllers
@@ -11,7 +13,8 @@ namespace NotificationCentre.SideBar.Controllers
 
         public void OnImportsSatisfied()
         {
-            
+            Observable.Timer(TimeSpan.FromSeconds(5))
+                      .Subscribe(_ => ViewModel.IsOpen = true);
         }
     }
 }

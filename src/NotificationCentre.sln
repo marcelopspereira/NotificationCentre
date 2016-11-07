@@ -9,6 +9,10 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "NotificationCentre.SideBar"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "NotificationCentre.Alerts", "NotificationCentre.Alerts\NotificationCentre.Alerts.csproj", "{1C034555-06F8-47CE-A8A3-D04D130139C1}"
 EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Tests", "Tests", "{4C1B96C2-4D4A-4138-BA35-6B411E495F12}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "NotificationCentre.SideBar.Tests", "NotificationCentre.SideBar.Tests\NotificationCentre.SideBar.Tests.csproj", "{A1186763-9EB4-49FA-9F77-AD04989D3D30}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -27,8 +31,15 @@ Global
 		{1C034555-06F8-47CE-A8A3-D04D130139C1}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{1C034555-06F8-47CE-A8A3-D04D130139C1}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{1C034555-06F8-47CE-A8A3-D04D130139C1}.Release|Any CPU.Build.0 = Release|Any CPU
+		{A1186763-9EB4-49FA-9F77-AD04989D3D30}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{A1186763-9EB4-49FA-9F77-AD04989D3D30}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{A1186763-9EB4-49FA-9F77-AD04989D3D30}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{A1186763-9EB4-49FA-9F77-AD04989D3D30}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{A1186763-9EB4-49FA-9F77-AD04989D3D30} = {4C1B96C2-4D4A-4138-BA35-6B411E495F12}
 	EndGlobalSection
 EndGlobal
