@@ -1,7 +1,7 @@
-﻿using System;
-using System.ComponentModel.Composition;
-using System.Reactive.Linq;
+﻿using System.ComponentModel.Composition;
+using MaterialDesignThemes.Wpf;
 using NotificationCentre.SideBar.ViewModels;
+using Presentation.Commands;
 
 namespace NotificationCentre.SideBar.Controllers
 {
@@ -13,8 +13,11 @@ namespace NotificationCentre.SideBar.Controllers
 
         public void OnImportsSatisfied()
         {
-            Observable.Timer(TimeSpan.FromSeconds(5))
-                      .Subscribe(_ => ViewModel.IsOpen = true);
+            ViewModel.SwitchTheme = new DelegateCommand<bool?>(isLight =>
+            {
+                if (isLight.HasValue)
+                    new PaletteHelper().SetLightDark(!isLight.Value);
+            });
         }
     }
 }

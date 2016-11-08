@@ -1,3 +1,12 @@
-﻿<viewModels1:SideBarViewModel xmlns:viewModels1="clr-namespace:NotificationCentre.SideBar.ViewModels">
-    
-</viewModels1:SideBarViewModel>
+﻿<viewModels:SideBarViewModel xmlns:viewModels="clr-namespace:NotificationCentre.SideBar.ViewModels"
+                             xmlns:models="clr-namespace:NotificationCentre.SideBar.Models"
+                             IsOpen="True">
+    <viewModels:SideBarViewModel.Alerts>
+        <models:AlertModel Title="New Alert"
+                           Content="Brand new alert just came in."
+                           Timestamp="11:31:02"/>
+        <models:AlertModel Title="Update Available"
+                           Content="Please restart to use the new version. Continuing to make this content really long."
+                           Timestamp="09:00:00"/>
+    </viewModels:SideBarViewModel.Alerts>
+</viewModels:SideBarViewModel>

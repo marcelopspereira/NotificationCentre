@@ -5,6 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:system="clr-namespace:System;assembly=mscorlib"
         xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
+        xmlns:componentModel="clr-namespace:System.ComponentModel;assembly=WindowsBase"
         mc:Ignorable="d"
         AllowsTransparency="True"
         Background="Transparent"
@@ -45,6 +46,12 @@
                 </DoubleAnimation.EasingFunction>
             </DoubleAnimation>
         </Storyboard>
+        <CollectionViewSource x:Key="SortedAlerts" Source="{Binding Alerts}">
+            <CollectionViewSource.SortDescriptions>
+                <componentModel:SortDescription PropertyName="Timestamp"
+                                                Direction="Descending"/>
+            </CollectionViewSource.SortDescriptions>
+        </CollectionViewSource>
     </Window.Resources>
     <Border Background="{DynamicResource MaterialDesignPaper}"
             BorderThickness="1,0,0,0"
@@ -66,30 +73,92 @@
                 </Style.Triggers>
             </Style>
         </Border.Style>
-        <materialDesign:ColorZone Mode="Standard"
-                                  Padding="8 4 8 4"
-                                  CornerRadius="2"
-                                  Panel.ZIndex="1"
-                                  Margin="10"
-                                  materialDesign:ShadowAssist.ShadowDepth="Depth1">
-            <Grid>
-                <Grid.ColumnDefinitions>
-                    <ColumnDefinition Width="Auto" />
-                    <ColumnDefinition Width="*" />
-                    <ColumnDefinition Width="Auto" />
-                </Grid.ColumnDefinitions>
-                <Button Style="{DynamicResource MaterialDesignToolButton}">
-                    <materialDesign:PackIcon Kind="Magnify"
-                                             Opacity=".56" />
-                </Button>
-                <TextBox Grid.Column="1"
-                         Margin="8 0 0 0"
-                         materialDesign:HintAssist.Hint="Search"
-                         materialDesign:TextFieldAssist.DecorationVisibility="Hidden"
-                         BorderThickness="0"
-                         MinWidth="200"
-                         VerticalAlignment="Center" />
-            </Grid>
-        </materialDesign:ColorZone>
+        <Grid>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="*"/>
+                <RowDefinition Height="Auto"/>
+            </Grid.RowDefinitions>
+            <materialDesign:ColorZone Grid.Row="0" 
+                                      Mode="Standard"
+                                      Padding="8 4 8 4"
+                                      CornerRadius="2"
+                                      Panel.ZIndex="1"
+                                      Margin="10"
+                                      materialDesign:ShadowAssist.ShadowDepth="Depth1">
+                <Grid>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="Auto" />
+                        <ColumnDefinition Width="*" />
+                        <ColumnDefinition Width="Auto" />
+                    </Grid.ColumnDefinitions>
+                    <Button Style="{DynamicResource MaterialDesignToolButton}">
+                        <materialDesign:PackIcon Kind="Magnify"
+                                                 Opacity=".56" />
+                    </Button>
+                    <TextBox Grid.Column="1"
+                             Margin="8 0 0 0"
+                             materialDesign:HintAssist.Hint="Search"
+                             materialDesign:TextFieldAssist.DecorationVisibility="Hidden"
+                             BorderThickness="0"
+                             MinWidth="200"
+                             VerticalAlignment="Center" />
+                </Grid>
+            </materialDesign:ColorZone>
+            <ScrollViewer Grid.Row="1"
+                          Grid.IsSharedSizeScope="True"
+                          HorizontalScrollBarVisibility="Disabled"
+                          VerticalScrollBarVisibility="Auto">
+                <ItemsControl ItemsSource="{Binding Source={StaticResource SortedAlerts}}">
+                    <ItemsControl.ItemTemplate>
+                        <DataTemplate>
+                            <Border x:Name="Border"
+                                    Padding="8"
+                                    Margin="10,0,0,0"
+                                    BorderThickness="0 0 0 1"
+                                    BorderBrush="{DynamicResource MaterialDesignDivider}">
+                                <Grid>
+                                    <Grid.ColumnDefinitions>
+                                        <ColumnDefinition Width="Auto"
+                                                          SharedSizeGroup="Icon" />
+                                        <ColumnDefinition Width="*" />
+                                        <ColumnDefinition Width="Auto" />
+                                    </Grid.ColumnDefinitions>
+                                    <Grid.RowDefinitions>
+                                        <RowDefinition Height="Auto" />
+                                        <RowDefinition Height="Auto" />
+                                    </Grid.RowDefinitions>
+                                    <TextBlock Grid.Row="0"
+                                               Grid.Column="1"
+                                               FontWeight="Bold"
+                                               TextTrimming="CharacterEllipsis"
+                                               Text="{Binding Title}" />
+                                    <TextBlock Grid.Row="1"
+                                               Grid.Column="1"
+                                               Grid.ColumnSpan="2"
+                                               TextTrimming="CharacterEllipsis"
+                                               Text="{Binding Content}" />
+                                    <TextBlock Grid.Row="0"
+                                               Grid.Column="2"
+                                               Text="{Binding Timestamp, StringFormat='{}{0:H:mm}'}"
+                                               ToolTip="{Binding Timestamp}"/>
+                                </Grid>
+                            </Border>
+                        </DataTemplate>
+                    </ItemsControl.ItemTemplate>
+                </ItemsControl>
+            </ScrollViewer>
+            <StackPanel Grid.Row="2" 
+                        Orientation="Horizontal"
+                        Margin="8">
+                <TextBlock VerticalAlignment="Center"
+                           Text="Dark"/>
+                <ToggleButton Margin="8,0"
+                              Command="{Binding SwitchTheme}"
+                              CommandParameter="{Binding RelativeSource={RelativeSource Self}, Path=IsChecked}" />
+                <TextBlock VerticalAlignment="Center"
+                           Text="Light"/>
+            </StackPanel>
+        </Grid>
     </Border>
 </Window>
