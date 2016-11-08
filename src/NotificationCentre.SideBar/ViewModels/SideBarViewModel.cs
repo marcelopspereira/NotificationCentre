@@ -9,8 +9,9 @@ namespace NotificationCentre.SideBar.ViewModels
     internal sealed class SideBarViewModel : INotifyPropertyChanged, ISideBarViewModel
     {
         private bool _isOpen;
+        private ICommand _clearSearch;
         private ICommand _switchTheme;
-        private string _searchString;
+        private string _searchString = string.Empty;
 
         public event PropertyChangedEventHandler PropertyChanged;
 
@@ -23,6 +24,19 @@ namespace NotificationCentre.SideBar.ViewModels
                     return;
 
                 _searchString = value;
+                PropertyChanged.Raise(this);
+            }
+        }
+
+        public ICommand ClearSearch
+        {
+            get { return _clearSearch; }
+            set
+            {
+                if (_clearSearch == value)
+                    return;
+
+                _clearSearch = value;
                 PropertyChanged.Raise(this);
             }
         }

@@ -8,6 +8,7 @@
         xmlns:componentModel="clr-namespace:System.ComponentModel;assembly=WindowsBase"
         xmlns:i="http://schemas.microsoft.com/expression/2010/interactivity"
         xmlns:behaviors="clr-namespace:NotificationCentre.SideBar.Behaviors"
+        xmlns:converters="presentation"
         mc:Ignorable="d"
         AllowsTransparency="True"
         Background="Transparent"
@@ -29,8 +30,11 @@
         d:DataContext="{d:DesignData Source=../DesignData/SideBarWindowData.xaml}" 
         x:ClassModifier="internal">
     <Window.Resources>
+        <converters:EmptyStringToVisibilityConverter x:Key="EmptyStringToVisibilityConverter"
+                                                     EmptyState="Collapsed"
+                                                     NonEmptyState="Visible"/>
         <system:Double x:Key="Width">320</system:Double>
-        <Storyboard x:Key="EnterAnimation"
+        <Storyboard x:Key="EnterAnimation"                    
                     TargetProperty="RenderTransform.(TranslateTransform.X)">
             <DoubleAnimation To="0"
                              Duration="0:0:0.5">
@@ -103,11 +107,16 @@
                         <ColumnDefinition Width="*" />
                         <ColumnDefinition Width="Auto" />
                     </Grid.ColumnDefinitions>
-                    <Button Style="{DynamicResource MaterialDesignToolButton}">
+                    <Button Style="{DynamicResource MaterialDesignToolButton}"
+                            ToolTip="Search">
+                        <i:Interaction.Behaviors>
+                            <behaviors:FocusTargetOnClickBehavior Target="{Binding ElementName=SearchBox}" />
+                        </i:Interaction.Behaviors>
                         <materialDesign:PackIcon Kind="Magnify"
                                                  Opacity=".56" />
                     </Button>
                     <TextBox Grid.Column="1"
+                             x:Name="SearchBox"
                              Margin="8 0 0 0"
                              materialDesign:HintAssist.Hint="Search"
                              materialDesign:TextFieldAssist.DecorationVisibility="Hidden"
@@ -115,6 +124,16 @@
                              MinWidth="200"
                              VerticalAlignment="Center"
                              Text="{Binding SearchString, UpdateSourceTrigger=PropertyChanged}"/>
+                    <Button Grid.Column="2" 
+                            Visibility="{Binding SearchString, Converter={StaticResource EmptyStringToVisibilityConverter}}"
+                            Command="{Binding ClearSearch}"
+                            ToolTip="Clear"
+                            Style="{DynamicResource MaterialDesignToolButton}">
+                        <i:Interaction.Behaviors>
+                            <behaviors:FocusTargetOnClickBehavior Target="{Binding ElementName=SearchBox}" />
+                        </i:Interaction.Behaviors>
+                        <materialDesign:PackIcon Kind="CloseCircle" />
+                    </Button>
                 </Grid>
             </materialDesign:ColorZone>
             <ScrollViewer Grid.Row="1"

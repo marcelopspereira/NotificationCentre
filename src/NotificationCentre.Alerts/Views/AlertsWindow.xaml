@@ -134,7 +134,6 @@
                         <Button Grid.Row="0" 
                                 Grid.RowSpan="2"
                                 Grid.Column="2"
-                                Margin="0"
                                 Foreground="{DynamicResource MaterialDesignBody}"
                                 Style="{DynamicResource MaterialDesignFlatButton}"
                                 Content="DISMISS"/>

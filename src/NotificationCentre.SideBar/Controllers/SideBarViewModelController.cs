@@ -13,6 +13,7 @@ namespace NotificationCentre.SideBar.Controllers
 
         public void OnImportsSatisfied()
         {
+            ViewModel.ClearSearch = new DelegateCommand(() => ViewModel.SearchString = string.Empty);
             ViewModel.SwitchTheme = new DelegateCommand<bool?>(isLight =>
             {
                 if (isLight.HasValue)
