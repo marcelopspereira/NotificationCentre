@@ -6,6 +6,8 @@
         xmlns:system="clr-namespace:System;assembly=mscorlib"
         xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
         xmlns:componentModel="clr-namespace:System.ComponentModel;assembly=WindowsBase"
+        xmlns:i="http://schemas.microsoft.com/expression/2010/interactivity"
+        xmlns:behaviors="clr-namespace:NotificationCentre.SideBar.Behaviors"
         mc:Ignorable="d"
         AllowsTransparency="True"
         Background="Transparent"
@@ -46,7 +48,16 @@
                 </DoubleAnimation.EasingFunction>
             </DoubleAnimation>
         </Storyboard>
-        <CollectionViewSource x:Key="SortedAlerts" Source="{Binding Alerts}">
+        <CollectionViewSource x:Key="SortedAlerts" 
+                              Source="{Binding Alerts}"
+                              IsLiveFilteringRequested="True">
+            <i:Interaction.Behaviors>
+                <behaviors:AlertModelFilterByStringBehavior FilterString="{Binding SearchString}" />
+            </i:Interaction.Behaviors>
+            <CollectionViewSource.LiveFilteringProperties>
+                <system:String>Title</system:String>
+                <system:String>Content</system:String>
+            </CollectionViewSource.LiveFilteringProperties>
             <CollectionViewSource.SortDescriptions>
                 <componentModel:SortDescription PropertyName="Timestamp"
                                                 Direction="Descending"/>
@@ -102,7 +113,8 @@
                              materialDesign:TextFieldAssist.DecorationVisibility="Hidden"
                              BorderThickness="0"
                              MinWidth="200"
-                             VerticalAlignment="Center" />
+                             VerticalAlignment="Center"
+                             Text="{Binding SearchString, UpdateSourceTrigger=PropertyChanged}"/>
                 </Grid>
             </materialDesign:ColorZone>
             <ScrollViewer Grid.Row="1"

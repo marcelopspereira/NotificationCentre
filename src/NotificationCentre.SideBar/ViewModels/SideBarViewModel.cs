@@ -10,8 +10,22 @@ namespace NotificationCentre.SideBar.ViewModels
     {
         private bool _isOpen;
         private ICommand _switchTheme;
+        private string _searchString;
 
-        public event PropertyChangedEventHandler PropertyChanged;        
+        public event PropertyChangedEventHandler PropertyChanged;
+
+        public string SearchString
+        {
+            get { return _searchString; }
+            set
+            {
+                if (_searchString == value)
+                    return;
+
+                _searchString = value;
+                PropertyChanged.Raise(this);
+            }
+        }
 
         public ICommand SwitchTheme
         {

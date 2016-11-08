@@ -8,6 +8,8 @@ namespace NotificationCentre.SideBar.ViewModels
     {
         bool IsOpen { get; set; }
 
+        string SearchString { get; set; }
+
         ICommand SwitchTheme { get; set; }
 
         ObservableCollection<IAlertModel> Alerts { get; }
