@@ -13,7 +13,7 @@ namespace NotificationCentre.SideBar.Controllers
         public void OnImportsSatisfied()
         {
             View.Height = SystemParameters.WorkArea.Height;
-            View.Left = SystemParameters.WorkArea.Right - 320;
+            View.Left = SystemParameters.WorkArea.Right - View.Width;
         }
     }
 }

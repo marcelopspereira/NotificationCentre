@@ -1,4 +1,5 @@
 ﻿using System.ComponentModel.Composition;
+using System.Windows;
 using NotificationCentre.Alerts.Views;
 
 namespace NotificationCentre.Alerts.Controllers
@@ -11,7 +12,7 @@ namespace NotificationCentre.Alerts.Controllers
 
         public void OnImportsSatisfied()
         {
-            
+            View.Left = SystemParameters.WorkArea.Right - View.Width;
         }
     }
 }

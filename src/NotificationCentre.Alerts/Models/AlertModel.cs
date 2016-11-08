@@ -6,6 +6,7 @@ namespace NotificationCentre.Alerts.Models
 {
     internal sealed class AlertModel : INotifyPropertyChanged, IAlertModel
     {
+        private bool _isFree;
         private string _icon;
         private string _title;
         private string _content;
@@ -14,6 +15,19 @@ namespace NotificationCentre.Alerts.Models
         private ICommand _action;
 
         public event PropertyChangedEventHandler PropertyChanged;
+
+        public bool IsFree
+        {
+            get { return _isFree; }
+            set
+            {
+                if (_isFree == value)
+                    return;
+
+                _isFree = value;
+                PropertyChanged.Raise(this);
+            }
+        }
 
         public string Icon
         {

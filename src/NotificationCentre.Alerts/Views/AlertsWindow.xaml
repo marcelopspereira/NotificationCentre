@@ -18,6 +18,9 @@
         Title="Alerts"
         Topmost="True"
         WindowStyle="None"
+        Top="0"
+        Width="340"
+        Height="400"
         TextElement.Foreground="{DynamicResource MaterialDesignBody}"
         TextElement.FontWeight="Regular"
         TextElement.FontSize="13"
@@ -27,74 +30,80 @@
     <Window.Resources>
         <system:Double x:Key="AnimationWidth">340</system:Double>
         <system:Double x:Key="AlertWidth">320</system:Double>
-        <Storyboard x:Key="OpeningStoryboard"
-                    TargetProperty="RenderTransform.(TranslateTransform.X)">
-            <DoubleAnimation From="{StaticResource AnimationWidth}" 
-                             To="0"
-                             Duration="0:0:0.5">
-                <DoubleAnimation.EasingFunction>
-                    <QuarticEase EasingMode="EaseOut" />
-                </DoubleAnimation.EasingFunction>
-            </DoubleAnimation>
-        </Storyboard>
-        <Storyboard x:Key="ClosingStoryboard"
-                    TargetProperty="RenderTransform.(TranslateTransform.X)">
-            <DoubleAnimationUsingKeyFrames Storyboard.TargetProperty="Opacity">
-                <SplineDoubleKeyFrame KeyTime="0:0:0"
-                                      Value="1" />
-                <SplineDoubleKeyFrame KeyTime="0:0:0.2"
-                                      Value="0" />
-                <SplineDoubleKeyFrame KeyTime="0:0:0.2"
-                                      Value="1" />
-            </DoubleAnimationUsingKeyFrames>
-            <DoubleAnimationUsingKeyFrames Storyboard.TargetProperty="RenderTransform.(TranslateTransform.X)">
-                <DiscreteDoubleKeyFrame KeyTime="0:0:0"
-                                        Value="0" />
-                <DiscreteDoubleKeyFrame KeyTime="0:0:0.2"
-                                        Value="{StaticResource AnimationWidth}" />
-            </DoubleAnimationUsingKeyFrames>
-        </Storyboard>
-        <Storyboard x:Key="TimingOutStoryboard">
-            <DoubleAnimationUsingKeyFrames Storyboard.TargetProperty="Opacity">
-                <SplineDoubleKeyFrame KeyTime="0:0:3"
-                                      Value="1"/>
-                <SplineDoubleKeyFrame KeyTime="0:0:5"
-                                      Value="0" />
-                <SplineDoubleKeyFrame KeyTime="0:0:5"
-                                      Value="1" />
-            </DoubleAnimationUsingKeyFrames>
-            <DoubleAnimationUsingKeyFrames Storyboard.TargetProperty="RenderTransform.(TranslateTransform.X)">
-                <DiscreteDoubleKeyFrame KeyTime="0:0:0"
-                                        Value="0" />
-                <DiscreteDoubleKeyFrame KeyTime="0:0:3"
-                                        Value="0" />
-                <EasingDoubleKeyFrame KeyTime="0:0:3.5"
-                                      Value="{StaticResource AnimationWidth}">
-                    <EasingDoubleKeyFrame.EasingFunction>
-                        <QuarticEase EasingMode="EaseIn" />
-                    </EasingDoubleKeyFrame.EasingFunction>
-                </EasingDoubleKeyFrame>
-            </DoubleAnimationUsingKeyFrames>
-        </Storyboard>
     </Window.Resources>
     <ItemsControl Margin="0,5"
                   ItemsSource="{Binding Alerts}">
         <ItemsControl.ItemTemplate>
             <DataTemplate>
-                <materialDesign:Card Margin="10,5"
-                                     Background="{DynamicResource PrimaryHueDarkBrush}"
-                                     Foreground="{DynamicResource PrimaryHueDarkForegroundBrush}"
+                <materialDesign:Card x:Name="Card" 
+                                     Margin="10,5"                                     
                                      Padding="0"
-                                     Width="{StaticResource AlertWidth}">
+                                     Width="{StaticResource AlertWidth}"
+                                     UniformCornerRadius="3">
+                    <materialDesign:Card.Resources>
+                        <Storyboard x:Key="OpeningStoryboard"
+                                    TargetName="Card">
+                            <DoubleAnimation Storyboard.TargetProperty="RenderTransform.(TranslateTransform.X)"
+                                             From="{StaticResource AnimationWidth}" 
+                                             To="0"
+                                             Duration="0:0:.5">
+                                <DoubleAnimation.EasingFunction>
+                                    <QuarticEase EasingMode="EaseOut" />
+                                </DoubleAnimation.EasingFunction>
+                            </DoubleAnimation>
+                        </Storyboard>
+                        <Storyboard x:Key="ClosingStoryboard"
+                                    TargetName="Card"
+                                    TargetProperty="RenderTransform.(TranslateTransform.X)">
+                            <DoubleAnimationUsingKeyFrames Storyboard.TargetProperty="Opacity">
+                                <SplineDoubleKeyFrame KeyTime="0:0:0"
+                                                      Value="1" />
+                                <SplineDoubleKeyFrame KeyTime="0:0:0.2"
+                                                      Value="0" />
+                                <SplineDoubleKeyFrame KeyTime="0:0:0.2"
+                                                      Value="1" />
+                            </DoubleAnimationUsingKeyFrames>
+                            <DoubleAnimationUsingKeyFrames Storyboard.TargetProperty="RenderTransform.(TranslateTransform.X)">
+                                <DiscreteDoubleKeyFrame KeyTime="0:0:0"
+                                                        Value="0" />
+                                <DiscreteDoubleKeyFrame KeyTime="0:0:0.2"
+                                                        Value="{StaticResource AnimationWidth}" />
+                            </DoubleAnimationUsingKeyFrames>
+                        </Storyboard>
+                        <Storyboard x:Key="TimingOutStoryboard"
+                                    TargetName="Card">
+                            <DoubleAnimationUsingKeyFrames Storyboard.TargetProperty="Opacity">
+                                <SplineDoubleKeyFrame KeyTime="0:0:3"
+                                                      Value="1" />
+                                <SplineDoubleKeyFrame KeyTime="0:0:5"
+                                                      Value="0" />
+                                <SplineDoubleKeyFrame KeyTime="0:0:5"
+                                                      Value="1" />
+                            </DoubleAnimationUsingKeyFrames>
+                            <DoubleAnimationUsingKeyFrames Storyboard.TargetProperty="RenderTransform.(TranslateTransform.X)">
+                                <DiscreteDoubleKeyFrame KeyTime="0:0:0"
+                                                        Value="0" />
+                                <DiscreteDoubleKeyFrame KeyTime="0:0:3"
+                                                        Value="0" />
+                                <EasingDoubleKeyFrame KeyTime="0:0:3.5"
+                                                      Value="{StaticResource AnimationWidth}">
+                                    <EasingDoubleKeyFrame.EasingFunction>
+                                        <QuarticEase EasingMode="EaseIn" />
+                                    </EasingDoubleKeyFrame.EasingFunction>
+                                </EasingDoubleKeyFrame>
+                            </DoubleAnimationUsingKeyFrames>
+                        </Storyboard>
+                    </materialDesign:Card.Resources>
                     <i:Interaction.Behaviors>
-                        <behaviors:AnimateAlertBehavior OpeningStoryboard="{StaticResource OpeningStoryboard}"
+                        <behaviors:AnimateAlertBehavior BeginAnimation="{Binding IsFree}" 
+                                                        OpeningStoryboard="{StaticResource OpeningStoryboard}"
                                                         ClosingStoryboard="{StaticResource ClosingStoryboard}"
                                                         TimingOutStoryboard="{StaticResource TimingOutStoryboard}" />
                     </i:Interaction.Behaviors>
                     <materialDesign:Card.RenderTransform>
-                        <TranslateTransform X="{StaticResource AnimationWidth}" />
+                        <TranslateTransform X="340" />
                     </materialDesign:Card.RenderTransform>
-                    <Grid Margin="5">
+                    <Grid Margin="8,0,0,0">
                         <Grid.RowDefinitions>
                             <RowDefinition Height="Auto" />
                             <RowDefinition Height="Auto" />
@@ -106,17 +115,27 @@
                         </Grid.ColumnDefinitions>
                         <TextBlock Grid.Row="0"
                                    Grid.Column="0"
-                                   Text="{Binding Title}" />
+                                   FontWeight="Bold"
+                                   Text="{Binding Title}"
+                                   Margin="0,8,0,4"
+                                   TextTrimming="CharacterEllipsis"/>
                         <TextBlock Grid.Row="1"
-                                   Grid.Column="1"
-                                   Text="{Binding Content}" />
-                        <Separator Grid.Column="1"
+                                   Grid.Column="0"
+                                   Margin="0,4,0,8"
+                                   Text="{Binding Content}"
+                                   TextTrimming="CharacterEllipsis"/>
+                        <Rectangle Grid.Column="1"
                                    Grid.Row="0"
-                                   Grid.RowSpan="2"                                   
-                                   Style="{DynamicResource MaterialDesignDarkSeparator}" />
+                                   Grid.RowSpan="2"
+                                   Fill="{DynamicResource MaterialDesignSelection}"
+                                   Width="1"
+                                   VerticalAlignment="Stretch"
+                                   SnapsToDevicePixels="True"/>
                         <Button Grid.Row="0" 
                                 Grid.RowSpan="2"
                                 Grid.Column="2"
+                                Margin="0"
+                                Foreground="{DynamicResource MaterialDesignBody}"
                                 Style="{DynamicResource MaterialDesignFlatButton}"
                                 Content="DISMISS"/>
                     </Grid>
