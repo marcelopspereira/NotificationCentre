@@ -117,11 +117,11 @@
                                    Grid.Column="0"
                                    FontWeight="Bold"
                                    Text="{Binding Title}"
-                                   Margin="0,8,0,4"
+                                   Margin="0,8,0,2"
                                    TextTrimming="CharacterEllipsis"/>
                         <TextBlock Grid.Row="1"
                                    Grid.Column="0"
-                                   Margin="0,4,0,8"
+                                   Margin="0,2,0,8"
                                    Text="{Binding Content}"
                                    TextTrimming="CharacterEllipsis"/>
                         <Rectangle Grid.Column="1"
