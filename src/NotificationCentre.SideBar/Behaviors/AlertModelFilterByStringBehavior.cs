@@ -53,9 +53,9 @@ namespace NotificationCentre.SideBar.Behaviors
         {
             var behavior = sender as AlertModelFilterByStringBehavior;
 
-            behavior?.Dispatcher.BeginInvoke(new Action(() =>
+            behavior?.Dispatcher?.BeginInvoke(new Action(() =>
             {
-                behavior.AssociatedObject.View.Refresh();
+                behavior.AssociatedObject?.View?.Refresh();
             }));
         }
     }
