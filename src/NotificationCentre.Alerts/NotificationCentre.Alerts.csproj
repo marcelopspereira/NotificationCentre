@@ -30,6 +30,14 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="MaterialDesignColors, Version=1.1.3.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\MaterialDesignColors.1.1.3\lib\net45\MaterialDesignColors.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="MaterialDesignThemes.Wpf, Version=2.2.0.725, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\MaterialDesignThemes.2.2.0.725\lib\net45\MaterialDesignThemes.Wpf.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
     <Reference Include="Microsoft.Expression.Interactions, Version=4.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
       <HintPath>..\packages\System.Windows.Interactivity.WPF.2.0.20525\lib\net40\Microsoft.Expression.Interactions.dll</HintPath>
       <Private>True</Private>
@@ -63,7 +71,9 @@
   <ItemGroup>
     <Compile Include="AlertsModule.cs" />
     <Compile Include="Behaviors\AnimateAlertBehavior.cs" />
+    <Compile Include="Controllers\AlertsViewController.cs" />
     <Compile Include="Controllers\AlertsViewModelController.cs" />
+    <Compile Include="Controllers\IAlertsViewController.cs" />
     <Compile Include="Controllers\IAlertsViewModelController.cs" />
     <Compile Include="Models\AlertModel.cs" />
     <Compile Include="Models\IAlertModel.cs" />
@@ -73,6 +83,7 @@
     <Compile Include="Views\AlertsWindow.xaml.cs">
       <DependentUpon>AlertsWindow.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Views\IAlertsWindow.cs" />
   </ItemGroup>
   <ItemGroup>
     <DesignDataWithDesignTimeCreatableTypes Include="DesignData\AlertsWindowData.xaml">

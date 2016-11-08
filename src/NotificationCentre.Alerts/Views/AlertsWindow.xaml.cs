@@ -3,7 +3,7 @@
     /// <summary>
     /// Interaction logic for AlertsWindow.xaml
     /// </summary>
-    public partial class AlertsWindow
+    public partial class AlertsWindow : IAlertsWindow
     {
         public AlertsWindow()
         {

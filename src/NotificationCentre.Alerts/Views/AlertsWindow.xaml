@@ -6,6 +6,7 @@
         xmlns:system="clr-namespace:System;assembly=mscorlib"
         xmlns:i="http://schemas.microsoft.com/expression/2010/interactivity"
         xmlns:behaviors="clr-namespace:NotificationCentre.Alerts.Behaviors"
+        xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
         mc:Ignorable="d"
         d:DesignHeight="300"
         d:DesignWidth="300"
@@ -16,7 +17,13 @@
         ShowInTaskbar="False"
         Title="Alerts"
         Topmost="True"
-        WindowStyle="None">
+        WindowStyle="None"
+        TextElement.Foreground="{DynamicResource MaterialDesignBody}"
+        TextElement.FontWeight="Regular"
+        TextElement.FontSize="13"
+        TextOptions.TextFormattingMode="Ideal"
+        TextOptions.TextRenderingMode="Auto"
+        FontFamily="{DynamicResource MaterialDesignFont}">
     <Window.Resources>
         <system:Double x:Key="AnimationWidth">340</system:Double>
         <system:Double x:Key="AlertWidth">320</system:Double>
@@ -74,30 +81,46 @@
                   ItemsSource="{Binding Alerts}">
         <ItemsControl.ItemTemplate>
             <DataTemplate>
-                <Border Margin="10,5"
-                        Width="{StaticResource AlertWidth}"
-                        Background="White"
-                        BorderBrush="Black"
-                        BorderThickness="1">
+                <materialDesign:Card Margin="10,5"
+                                     Background="{DynamicResource PrimaryHueDarkBrush}"
+                                     Foreground="{DynamicResource PrimaryHueDarkForegroundBrush}"
+                                     Padding="0"
+                                     Width="{StaticResource AlertWidth}">
                     <i:Interaction.Behaviors>
                         <behaviors:AnimateAlertBehavior OpeningStoryboard="{StaticResource OpeningStoryboard}"
                                                         ClosingStoryboard="{StaticResource ClosingStoryboard}"
-                                                        TimingOutStoryboard="{StaticResource TimingOutStoryboard}"/>
+                                                        TimingOutStoryboard="{StaticResource TimingOutStoryboard}" />
                     </i:Interaction.Behaviors>
-                    <Border.RenderTransform>
-                        <TranslateTransform X="{StaticResource AnimationWidth}"/>
-                    </Border.RenderTransform>
+                    <materialDesign:Card.RenderTransform>
+                        <TranslateTransform X="{StaticResource AnimationWidth}" />
+                    </materialDesign:Card.RenderTransform>
                     <Grid Margin="5">
                         <Grid.RowDefinitions>
-                            <RowDefinition Height="Auto"/>
-                            <RowDefinition Height="Auto"/>
+                            <RowDefinition Height="Auto" />
+                            <RowDefinition Height="Auto" />
                         </Grid.RowDefinitions>
-                        <TextBlock Grid.Row="0" 
-                                   Text="{Binding Title}"/>
-                        <TextBlock Grid.Row="1" 
-                                   Text="{Binding Content}"/>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="*" />
+                            <ColumnDefinition Width="Auto" />
+                            <ColumnDefinition Width="Auto" />
+                        </Grid.ColumnDefinitions>
+                        <TextBlock Grid.Row="0"
+                                   Grid.Column="0"
+                                   Text="{Binding Title}" />
+                        <TextBlock Grid.Row="1"
+                                   Grid.Column="1"
+                                   Text="{Binding Content}" />
+                        <Separator Grid.Column="1"
+                                   Grid.Row="0"
+                                   Grid.RowSpan="2"                                   
+                                   Style="{DynamicResource MaterialDesignDarkSeparator}" />
+                        <Button Grid.Row="0" 
+                                Grid.RowSpan="2"
+                                Grid.Column="2"
+                                Style="{DynamicResource MaterialDesignFlatButton}"
+                                Content="DISMISS"/>
                     </Grid>
-                </Border>
+                </materialDesign:Card>
             </DataTemplate>
         </ItemsControl.ItemTemplate>
     </ItemsControl>
