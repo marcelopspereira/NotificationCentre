@@ -3,21 +3,23 @@ using System.ComponentModel.Composition.Hosting;
 using System.Windows;
 using NotificationCentre.Alerts;
 using NotificationCentre.SideBar;
+using NotificationCentre.Tray;
 using Presentation.Bootstrappers;
 using Presentation.Interfaces;
 
 namespace NotificationCentre
 {    
-    public partial class App : Application
+    public partial class App
     {
         private readonly IBootstrapper _bootstrapper;
 
         public App()
         {
-            var sideBarCatalog = new AssemblyCatalog(typeof(SideBarModule).Assembly);
+            var sideBarCatalog = new AssemblyCatalog(typeof(SideBarViewService).Assembly);
             var alertsCatalog = new AssemblyCatalog(typeof(AlertsModule).Assembly);
+            var trayCatalog = new AssemblyCatalog(typeof(TrayModule).Assembly);
 
-            var catalog = new AggregateCatalog(sideBarCatalog, alertsCatalog);
+            var catalog = new AggregateCatalog(sideBarCatalog, alertsCatalog, trayCatalog);
 
             var container = new CompositionContainer(catalog);
 

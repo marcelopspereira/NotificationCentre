@@ -2,7 +2,7 @@
 
 namespace NotificationCentre.Interfaces
 {
-    internal interface INotification
+    public interface INotification
     {
         string Title { get; }
 

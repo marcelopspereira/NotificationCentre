@@ -124,7 +124,7 @@
     <Compile Include="Controllers\SideBarViewModelController.cs" />
     <Compile Include="Models\NotificationModel.cs" />
     <Compile Include="Models\INotificationModel.cs" />
-    <Compile Include="SideBarModule.cs" />
+    <Compile Include="SideBarViewService.cs" />
     <Compile Include="ViewModels\ISideBarViewModel.cs" />
     <Compile Include="ViewModels\SideBarViewModel.cs" />
     <Compile Include="Views\ISideBarWindow.cs" />
@@ -145,7 +145,12 @@
   <ItemGroup>
     <None Include="packages.config" />
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <ProjectReference Include="..\NotificationCentre.Interfaces\NotificationCentre.Interfaces.csproj">
+      <Project>{CFAE3C22-A6CD-402F-91C1-7986FF8AC32C}</Project>
+      <Name>NotificationCentre.Interfaces</Name>
+    </ProjectReference>
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.

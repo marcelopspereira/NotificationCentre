@@ -179,17 +179,27 @@
                     </ItemsControl.ItemTemplate>
                 </ItemsControl>
             </ScrollViewer>
-            <StackPanel Grid.Row="2" 
-                        Orientation="Horizontal"
-                        Margin="8">
-                <TextBlock VerticalAlignment="Center"
-                           Text="Dark"/>
-                <ToggleButton Margin="8,0"
-                              Command="{Binding SwitchTheme}"
-                              CommandParameter="{Binding RelativeSource={RelativeSource Self}, Path=IsChecked}" />
-                <TextBlock VerticalAlignment="Center"
-                           Text="Light"/>
-            </StackPanel>
+            <Grid Grid.Row="2">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="*"/>
+                    <ColumnDefinition Width="Auto"/>
+                </Grid.ColumnDefinitions>
+                <StackPanel Orientation="Horizontal"
+                            Margin="8">
+                    <TextBlock VerticalAlignment="Center"
+                               Text="Dark" />
+                    <ToggleButton Margin="8,0"
+                                  Command="{Binding SwitchTheme}"
+                                  CommandParameter="{Binding RelativeSource={RelativeSource Self}, Path=IsChecked}" />
+                    <TextBlock VerticalAlignment="Center"
+                               Text="Light" />
+                </StackPanel>
+                <Button Grid.Column="1"
+                        Margin="8"
+                        Style="{DynamicResource MaterialDesignToolButton}">
+                    <materialDesign:PackIcon Kind="Settings" />
+                </Button>
+            </Grid>
         </Grid>
     </Border>
 </Window>

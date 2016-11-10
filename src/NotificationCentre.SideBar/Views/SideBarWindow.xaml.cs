@@ -7,7 +7,7 @@
     {
         public SideBarWindow()
         {
-            InitializeComponent();
+            InitializeComponent();            
         }
     }
 }
