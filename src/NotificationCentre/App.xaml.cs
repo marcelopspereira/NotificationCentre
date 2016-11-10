@@ -6,6 +6,7 @@ using NotificationCentre.SideBar;
 using NotificationCentre.Tray;
 using Presentation.Bootstrappers;
 using Presentation.Interfaces;
+using Presentation.Interop;
 
 namespace NotificationCentre
 {    
@@ -18,8 +19,9 @@ namespace NotificationCentre
             var sideBarCatalog = new AssemblyCatalog(typeof(SideBarViewService).Assembly);
             var alertsCatalog = new AssemblyCatalog(typeof(AlertsModule).Assembly);
             var trayCatalog = new AssemblyCatalog(typeof(TrayModule).Assembly);
+            var presentationCatalog = new AssemblyCatalog(typeof(HideFromAppSwitchService).Assembly);
 
-            var catalog = new AggregateCatalog(sideBarCatalog, alertsCatalog, trayCatalog);
+            var catalog = new AggregateCatalog(sideBarCatalog, alertsCatalog, trayCatalog, presentationCatalog);
 
             var container = new CompositionContainer(catalog);
 

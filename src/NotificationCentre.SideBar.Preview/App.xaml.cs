@@ -4,14 +4,18 @@ using System.Threading;
 using System.Windows;
 using NotificationCentre.SideBar.Controllers;
 using NotificationCentre.SideBar.Models;
+using Presentation.Interop;
 
 namespace NotificationCentre.SideBar.Preview
 {
-    public partial class App : Application
+    public partial class App
     {
         protected override void OnStartup(StartupEventArgs e)
         {
-            var viewController = new SideBarViewController();
+            var hideFromAppSwitch = new HideFromAppSwitchService();
+            var hideFromPeekService = new HideFromPeekService();
+
+            var viewController = new SideBarViewController(hideFromAppSwitch, hideFromPeekService);
             viewController.OnImportsSatisfied();
             var viewModelController = new SideBarViewModelController();
             viewModelController.OnImportsSatisfied();

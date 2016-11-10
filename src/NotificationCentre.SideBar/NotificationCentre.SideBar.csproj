@@ -62,6 +62,10 @@
       <HintPath>..\packages\Presentation.Interfaces.0.9.2\lib\net452\Presentation.Interfaces.dll</HintPath>
       <Private>True</Private>
     </Reference>
+    <Reference Include="Presentation.Interop, Version=0.9.2.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\Presentation.Interop.0.9.2\lib\net452\Presentation.Interop.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
     <Reference Include="Presentation.Reactive, Version=0.9.2.0, Culture=neutral, processorArchitecture=MSIL">
       <HintPath>..\packages\Presentation.Reactive.0.9.2\lib\net452\Presentation.Reactive.dll</HintPath>
       <Private>True</Private>

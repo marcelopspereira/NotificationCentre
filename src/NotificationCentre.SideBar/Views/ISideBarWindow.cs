@@ -2,7 +2,7 @@
 
 namespace NotificationCentre.SideBar.Views
 {
-    internal interface ISideBarWindow : IWindow
+    internal interface ISideBarWindow : IWindowWithHandle
     {
 
     }
