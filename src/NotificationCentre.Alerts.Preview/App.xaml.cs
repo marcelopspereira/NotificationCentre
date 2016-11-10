@@ -25,7 +25,7 @@ namespace NotificationCentre.Alerts.Preview
 
             Observable.Interval(TimeSpan.FromSeconds(5))
                       .ObserveOn(SynchronizationContext.Current)
-                      .Select(_ => new AlertModel { Title = "Update Available", Content = "Restart to use the new version.", IsFree = true})
+                      .Select(_ => new AlertModel { Title = "Update Available", Content = "Restart to use the new version.", HasAlert = true})
                       .Subscribe(alert => viewModelController.ViewModel.Alerts.Add(alert));
         }
     }

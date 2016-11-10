@@ -30,7 +30,9 @@ namespace NotificationCentre.Tray
             if (iconStream == null)
                 throw new ArgumentException();
 
-            _trayIcon.Initialize(new Icon(iconStream.Stream));
+            var icon = new Icon(iconStream.Stream);
+
+            _trayIcon.Show(icon);
         }
     }
 }

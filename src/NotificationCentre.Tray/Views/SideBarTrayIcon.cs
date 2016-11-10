@@ -23,7 +23,7 @@ namespace NotificationCentre.Tray.Views
             _disposable.Dispose();
         }
 
-        public void Initialize(Icon icon)
+        public void Show(Icon icon)
         {
             var notifyIcon = new NotifyIcon
             {

@@ -6,8 +6,7 @@ namespace NotificationCentre.Alerts.Models
 {
     internal sealed class AlertModel : INotifyPropertyChanged, IAlertModel
     {
-        private bool _isFree;
-        private string _icon;
+        private bool _hasAlert;
         private string _title;
         private string _content;
         private ICommand _timeout;
@@ -16,28 +15,15 @@ namespace NotificationCentre.Alerts.Models
 
         public event PropertyChangedEventHandler PropertyChanged;
 
-        public bool IsFree
+        public bool HasAlert
         {
-            get { return _isFree; }
+            get { return _hasAlert; }
             set
             {
-                if (_isFree == value)
+                if (_hasAlert == value)
                     return;
 
-                _isFree = value;
-                PropertyChanged.Raise(this);
-            }
-        }
-
-        public string Icon
-        {
-            get { return _icon; }
-            set
-            {
-                if (_icon == value)
-                    return;
-
-                _icon = value;
+                _hasAlert = value;
                 PropertyChanged.Raise(this);
             }
         }

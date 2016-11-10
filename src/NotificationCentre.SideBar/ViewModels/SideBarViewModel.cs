@@ -67,6 +67,6 @@ namespace NotificationCentre.SideBar.ViewModels
             }
         }
 
-        public ObservableCollection<INotificationModel> Alerts { get; } = new ObservableCollection<INotificationModel>();
+        public ObservableCollection<INotificationModel> Notifications { get; } = new ObservableCollection<INotificationModel>();
     }
 }

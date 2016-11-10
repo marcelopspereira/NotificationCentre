@@ -10,6 +10,13 @@ namespace NotificationCentre.SideBar.Models
         private string _content;
         private DateTime _timestamp;
 
+        public NotificationModel(string title, string content, DateTime timestamp)
+        {
+            _title = title;
+            _content = content;
+            _timestamp = timestamp;
+        }
+
         public string Title
         {
             get { return _title; }

@@ -95,7 +95,7 @@
                         </Storyboard>
                     </materialDesign:Card.Resources>
                     <i:Interaction.Behaviors>
-                        <behaviors:AnimateAlertBehavior StartAnimation="{Binding IsFree}" 
+                        <behaviors:AnimateAlertBehavior StartAnimation="{Binding HasAlert}" 
                                                         OpeningStoryboard="{StaticResource OpeningStoryboard}"
                                                         ClosingStoryboard="{StaticResource ClosingStoryboard}"
                                                         TimingOutStoryboard="{StaticResource TimingOutStoryboard}" />

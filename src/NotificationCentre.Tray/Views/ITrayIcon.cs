@@ -5,6 +5,6 @@ namespace NotificationCentre.Tray.Views
 {
     internal interface ITrayIcon : IDisposable
     {
-        void Initialize(Icon icon);
+        void Show(Icon icon);
     }
 }

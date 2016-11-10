@@ -52,8 +52,8 @@
                 </DoubleAnimation.EasingFunction>
             </DoubleAnimation>
         </Storyboard>
-        <CollectionViewSource x:Key="SortedAlerts" 
-                              Source="{Binding Alerts}"
+        <CollectionViewSource x:Key="SortedNotifications" 
+                              Source="{Binding Notifications}"
                               IsLiveFilteringRequested="True">
             <i:Interaction.Behaviors>
                 <behaviors:AlertModelFilterByStringBehavior FilterString="{Binding SearchString}" />
@@ -140,7 +140,7 @@
                           Grid.IsSharedSizeScope="True"
                           HorizontalScrollBarVisibility="Disabled"
                           VerticalScrollBarVisibility="Auto">
-                <ItemsControl ItemsSource="{Binding Source={StaticResource SortedAlerts}}">
+                <ItemsControl ItemsSource="{Binding Source={StaticResource SortedNotifications}}">
                     <ItemsControl.ItemTemplate>
                         <DataTemplate>
                             <Border x:Name="Border"

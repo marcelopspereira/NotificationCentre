@@ -40,7 +40,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="IAlertsViewService.cs" />
+    <Compile Include="INotificationService.cs" />
     <Compile Include="INotification.cs" />
     <Compile Include="ISideBarViewService.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

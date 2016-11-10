@@ -17,7 +17,7 @@ namespace NotificationCentre.SideBar.Preview
 
             var viewController = new SideBarViewController(hideFromAppSwitch, hideFromPeekService);
             viewController.OnImportsSatisfied();
-            var viewModelController = new SideBarViewModelController();
+            var viewModelController = new SideBarViewModelController(null, null);
             viewModelController.OnImportsSatisfied();
 
             var view = viewController.View;
@@ -29,8 +29,8 @@ namespace NotificationCentre.SideBar.Preview
                       .Subscribe(_ => viewModelController.ViewModel.IsOpen = true);
             Observable.Interval(TimeSpan.FromSeconds(5))
                       .ObserveOn(SynchronizationContext.Current)
-                      .Select(_ => new NotificationModel { Title = "Update Available", Content = "Restart to use the new version.", Timestamp = DateTime.Now})
-                      .Subscribe(alert => viewModelController.ViewModel.Alerts.Insert(0, alert));
+                      .Select(_ => new NotificationModel("Update Available", "Restart to use the new version.", DateTime.Now))
+                      .Subscribe(alert => viewModelController.ViewModel.Notifications.Insert(0, alert));
             Observable.Timer(TimeSpan.FromSeconds(60))
                       .ObserveOn(SynchronizationContext.Current)
                       .Subscribe(_ => viewModelController.ViewModel.IsOpen = false);

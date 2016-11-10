@@ -14,6 +14,6 @@ namespace NotificationCentre.SideBar.ViewModels
 
         ICommand SwitchTheme { get; set; }
 
-        ObservableCollection<INotificationModel> Alerts { get; }
+        ObservableCollection<INotificationModel> Notifications { get; }
     }
 }

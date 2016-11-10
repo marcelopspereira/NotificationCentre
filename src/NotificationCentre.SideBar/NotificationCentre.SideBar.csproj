@@ -128,6 +128,7 @@
     <Compile Include="Controllers\SideBarViewModelController.cs" />
     <Compile Include="Models\NotificationModel.cs" />
     <Compile Include="Models\INotificationModel.cs" />
+    <Compile Include="Models\NotificationModelExtensions.cs" />
     <Compile Include="SideBarViewService.cs" />
     <Compile Include="ViewModels\ISideBarViewModel.cs" />
     <Compile Include="ViewModels\SideBarViewModel.cs" />
