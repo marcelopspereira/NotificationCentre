@@ -1,15 +1,14 @@
 ﻿using System.Reflection;
-using System.Runtime.CompilerServices;
 using System.Runtime.InteropServices;
 
 // General Information about an assembly is controlled through the following 
 // set of attributes. Change these attribute values to modify the information
 // associated with an assembly.
-[assembly: AssemblyTitle("NotificationCentre.SideBar")]
+[assembly: AssemblyTitle("NotificationCentre.Interfaces")]
 [assembly: AssemblyDescription("")]
 [assembly: AssemblyConfiguration("")]
 [assembly: AssemblyCompany("Mark McDowell")]
-[assembly: AssemblyProduct("NotificationCentre.SideBar")]
+[assembly: AssemblyProduct("NotificationCentre.Interfaces")]
 [assembly: AssemblyCopyright("Copyright © Mark McDowell 2016")]
 [assembly: AssemblyTrademark("")]
 [assembly: AssemblyCulture("")]
@@ -20,7 +19,7 @@ using System.Runtime.InteropServices;
 [assembly: ComVisible(false)]
 
 // The following GUID is for the ID of the typelib if this project is exposed to COM
-[assembly: Guid("0f6ce74b-ea2a-4fb8-a96a-7906a46266a9")]
+[assembly: Guid("cfae3c22-a6cd-402f-91c1-7986ff8ac32c")]
 
 // Version information for an assembly consists of the following four values:
 //
@@ -34,5 +33,3 @@ using System.Runtime.InteropServices;
 // [assembly: AssemblyVersion("1.0.*")]
 [assembly: AssemblyVersion("1.0.0.0")]
 [assembly: AssemblyFileVersion("1.0.0.0")]
-[assembly: InternalsVisibleTo("NotificationCentre")]
-[assembly: InternalsVisibleTo("NotificationCentre.SideBar.Preview")]

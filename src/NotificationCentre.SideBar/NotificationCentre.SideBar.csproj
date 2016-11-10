@@ -122,8 +122,8 @@
     <Compile Include="Controllers\ISideBarViewModelController.cs" />
     <Compile Include="Controllers\SideBarViewController.cs" />
     <Compile Include="Controllers\SideBarViewModelController.cs" />
-    <Compile Include="Models\AlertModel.cs" />
-    <Compile Include="Models\IAlertModel.cs" />
+    <Compile Include="Models\NotificationModel.cs" />
+    <Compile Include="Models\INotificationModel.cs" />
     <Compile Include="SideBarModule.cs" />
     <Compile Include="ViewModels\ISideBarViewModel.cs" />
     <Compile Include="ViewModels\SideBarViewModel.cs" />

@@ -32,7 +32,7 @@ namespace NotificationCentre.SideBar.Behaviors
             if (string.IsNullOrWhiteSpace(FilterString))
                 return;
 
-            var item = e.Item as IAlertModel;
+            var item = e.Item as INotificationModel;
             if (item == null)
                 return;
 

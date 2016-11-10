@@ -2,10 +2,8 @@
 
 namespace NotificationCentre.SideBar.Models
 {
-    internal interface IAlertModel
+    internal interface INotificationModel
     {
-        string Icon { get; set; }
-
         string Title { get; set; }
 
         string Content { get; set; }

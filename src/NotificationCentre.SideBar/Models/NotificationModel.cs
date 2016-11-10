@@ -4,25 +4,11 @@ using Presentation.Core;
 
 namespace NotificationCentre.SideBar.Models
 {
-    internal sealed class AlertModel : IAlertModel, INotifyPropertyChanged
+    internal sealed class NotificationModel : INotificationModel, INotifyPropertyChanged
     {
-        private string _icon;
         private string _title;
         private string _content;
         private DateTime _timestamp;
-
-        public string Icon
-        {
-            get { return _icon; }
-            set
-            {
-                if (_icon == value)
-                    return;
-
-                _icon = value;
-                PropertyChanged.Raise(this);
-            }
-        }
 
         public string Title
         {
