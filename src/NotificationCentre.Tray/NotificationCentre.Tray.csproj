@@ -30,8 +30,8 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="Presentation.Interfaces, Version=0.9.2.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\packages\Presentation.Interfaces.0.9.2\lib\net452\Presentation.Interfaces.dll</HintPath>
+    <Reference Include="Presentation.Interfaces, Version=0.9.3.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\Presentation.Interfaces.0.9.3\lib\net452\Presentation.Interfaces.dll</HintPath>
       <Private>True</Private>
     </Reference>
     <Reference Include="PresentationFramework" />

@@ -13,13 +13,10 @@ namespace NotificationCentre.SideBar.Views
             InitializeComponent();            
         }
 
-        public IntPtr Handle
+        public IntPtr RetrieveHandle()
         {
-            get
-            {
-                var helper = new WindowInteropHelper(this);
-                return helper.EnsureHandle();
-            }
+            var helper = new WindowInteropHelper(this);
+            return helper.EnsureHandle();
         }
     }
 }

@@ -14,12 +14,12 @@ namespace NotificationCentre.Alerts.Behaviors
 
         public static readonly DependencyProperty TimingOutStoryboardProperty = DependencyProperty.Register("TimingOutStoryboard", typeof(Storyboard), typeof(AnimateAlertBehavior), new PropertyMetadata(default(Storyboard)));
 
-        public static readonly DependencyProperty BeginAnimationProperty = DependencyProperty.Register("BeginAnimation", typeof(bool), typeof(AnimateAlertBehavior), new PropertyMetadata(default(bool), OnBeginAnimationChanged));
+        public static readonly DependencyProperty StartAnimationProperty = DependencyProperty.Register("StartAnimation", typeof(bool), typeof(AnimateAlertBehavior), new PropertyMetadata(default(bool), OnStartAnimationChanged));
 
-        public bool BeginAnimation
+        public bool StartAnimation
         {
-            get { return (bool) GetValue(BeginAnimationProperty); }
-            set { SetValue(BeginAnimationProperty, value); }
+            get { return (bool) GetValue(StartAnimationProperty); }
+            set { SetValue(StartAnimationProperty, value); }
         }
 
         public Storyboard OpeningStoryboard
@@ -83,7 +83,7 @@ namespace NotificationCentre.Alerts.Behaviors
             storyboard.Completed += (o, args) => behavior.TimingOutStoryboard.Begin();
         }
 
-        private static void OnBeginAnimationChanged(DependencyObject sender, DependencyPropertyChangedEventArgs e)
+        private static void OnStartAnimationChanged(DependencyObject sender, DependencyPropertyChangedEventArgs e)
         {
             var behavior = sender as AnimateAlertBehavior;
             if (behavior == null)
