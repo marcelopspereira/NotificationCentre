@@ -42,32 +42,32 @@
       <HintPath>..\packages\System.Windows.Interactivity.WPF.2.0.20525\lib\net40\Microsoft.Expression.Interactions.dll</HintPath>
       <Private>True</Private>
     </Reference>
-    <Reference Include="Presentation.Behaviors, Version=0.9.3.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\packages\Presentation.Behaviors.0.9.3\lib\net452\Presentation.Behaviors.dll</HintPath>
+    <Reference Include="Presentation.Behaviors, Version=0.9.4.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\Presentation.Behaviors.0.9.4\lib\net452\Presentation.Behaviors.dll</HintPath>
       <Private>True</Private>
     </Reference>
-    <Reference Include="Presentation.Commands, Version=0.9.3.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\packages\Presentation.Commands.0.9.3\lib\net452\Presentation.Commands.dll</HintPath>
+    <Reference Include="Presentation.Commands, Version=0.9.4.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\Presentation.Commands.0.9.4\lib\net452\Presentation.Commands.dll</HintPath>
       <Private>True</Private>
     </Reference>
-    <Reference Include="Presentation.Converters, Version=0.9.3.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\packages\Presentation.Converters.0.9.3\lib\net452\Presentation.Converters.dll</HintPath>
+    <Reference Include="Presentation.Converters, Version=0.9.4.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\Presentation.Converters.0.9.4\lib\net452\Presentation.Converters.dll</HintPath>
       <Private>True</Private>
     </Reference>
-    <Reference Include="Presentation.Core, Version=0.9.3.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\packages\Presentation.Core.0.9.3\lib\net452\Presentation.Core.dll</HintPath>
+    <Reference Include="Presentation.Core, Version=0.9.4.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\Presentation.Core.0.9.4\lib\net452\Presentation.Core.dll</HintPath>
       <Private>True</Private>
     </Reference>
-    <Reference Include="Presentation.Interfaces, Version=0.9.3.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\packages\Presentation.Interfaces.0.9.3\lib\net452\Presentation.Interfaces.dll</HintPath>
+    <Reference Include="Presentation.Interfaces, Version=0.9.4.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\Presentation.Interfaces.0.9.4\lib\net452\Presentation.Interfaces.dll</HintPath>
       <Private>True</Private>
     </Reference>
-    <Reference Include="Presentation.Interop, Version=0.9.3.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\packages\Presentation.Interop.0.9.3\lib\net452\Presentation.Interop.dll</HintPath>
+    <Reference Include="Presentation.Interop, Version=0.9.4.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\Presentation.Interop.0.9.4\lib\net452\Presentation.Interop.dll</HintPath>
       <Private>True</Private>
     </Reference>
-    <Reference Include="Presentation.Reactive, Version=0.9.3.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\packages\Presentation.Reactive.0.9.3\lib\net452\Presentation.Reactive.dll</HintPath>
+    <Reference Include="Presentation.Reactive, Version=0.9.4.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\Presentation.Reactive.0.9.4\lib\net452\Presentation.Reactive.dll</HintPath>
       <Private>True</Private>
     </Reference>
     <Reference Include="PresentationCore" />
