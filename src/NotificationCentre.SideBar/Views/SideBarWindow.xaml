@@ -183,6 +183,7 @@
                 <Grid.ColumnDefinitions>
                     <ColumnDefinition Width="*"/>
                     <ColumnDefinition Width="Auto"/>
+                    <ColumnDefinition Width="Auto"/>
                 </Grid.ColumnDefinitions>
                 <StackPanel Orientation="Horizontal"
                             Margin="8">
@@ -194,11 +195,16 @@
                     <TextBlock VerticalAlignment="Center"
                                Text="Light" />
                 </StackPanel>
-                <Button Grid.Column="1"
-                        Margin="8"
-                        Style="{DynamicResource MaterialDesignToolButton}">
-                    <materialDesign:PackIcon Kind="Settings" />
-                </Button>
+                <materialDesign:PopupBox Grid.Column="2"
+                                         PlacementMode="TopAndAlignRightEdges"
+                                         StaysOpen="False">
+                    <StackPanel>
+                        <Button Content="Settings" />
+                        <Separator />
+                        <Button Content="Exit"
+                                Command="{Binding ExitApplication}"/>
+                    </StackPanel>
+                </materialDesign:PopupBox>
             </Grid>
         </Grid>
     </Border>

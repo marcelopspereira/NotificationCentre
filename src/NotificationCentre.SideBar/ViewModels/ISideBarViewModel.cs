@@ -10,6 +10,8 @@ namespace NotificationCentre.SideBar.ViewModels
 
         string SearchString { get; set; }
 
+        ICommand ExitApplication { get; set; }
+
         ICommand ClearSearch { get; set; }
 
         ICommand SwitchTheme { get; set; }

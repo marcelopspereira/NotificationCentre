@@ -2,6 +2,7 @@
 using System.ComponentModel.Composition;
 using System.Reactive.Disposables;
 using System.Reactive.Linq;
+using System.Windows;
 using MaterialDesignThemes.Wpf;
 using NotificationCentre.Interfaces;
 using NotificationCentre.SideBar.Models;
@@ -31,6 +32,7 @@ namespace NotificationCentre.SideBar.Controllers
 
         public void OnImportsSatisfied()
         {
+            ViewModel.ExitApplication = new DelegateCommand(() => Application.Current.Shutdown());
             ViewModel.ClearSearch = new DelegateCommand(() => ViewModel.SearchString = string.Empty);
             ViewModel.SwitchTheme = new DelegateCommand<bool?>(isLight =>
             {
