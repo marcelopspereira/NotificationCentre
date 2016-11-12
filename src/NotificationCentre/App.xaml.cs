@@ -16,10 +16,12 @@ namespace NotificationCentre
 
             var container = new CompositionContainer(catalog);
 
-            _bootstrapper = new ModuleInitializingBootstrapper(container);
-            _bootstrapper = new UnhandledDispatcherExceptionBootstrapper(_bootstrapper, this, ex => true);
-            _bootstrapper = new UnobservedTaskExceptionBootstrapper(_bootstrapper, ex => true);
-            _bootstrapper = new UnhandledAppDomainExceptionBootstrapper(_bootstrapper, AppDomain.CurrentDomain, (ex, handled) => {});
+            var bootstrapper = new DelegateBootstrapper(() => {}, container.Dispose);
+
+            _bootstrapper = bootstrapper.InitalizeModules(container)
+                                        .CatchDispatcherExceptions(this, ex => true)
+                                        .CatchTaskExceptions(ex => true)
+                                        .CatchAppDomainExceptions(AppDomain.CurrentDomain, (ex, handled) => {});
         }
 
         protected override void OnStartup(StartupEventArgs e)
