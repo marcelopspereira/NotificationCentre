@@ -130,6 +130,10 @@
       <Project>{0F6CE74B-EA2A-4FB8-A96A-7906A46266A9}</Project>
       <Name>NotificationCentre.SideBar</Name>
     </ProjectReference>
+    <ProjectReference Include="..\NotificationCentre.Transports.Pipe\NotificationCentre.Transports.csproj">
+      <Project>{EFA7DEB8-DED3-4B8C-AB67-A18CE769CEC2}</Project>
+      <Name>NotificationCentre.Transports</Name>
+    </ProjectReference>
     <ProjectReference Include="..\NotificationCentre.Tray\NotificationCentre.Tray.csproj">
       <Project>{E25CE846-A787-4A8C-9FC6-0D77527F362A}</Project>
       <Name>NotificationCentre.Tray</Name>

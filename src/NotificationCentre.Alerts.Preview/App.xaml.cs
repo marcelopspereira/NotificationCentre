@@ -16,7 +16,7 @@ namespace NotificationCentre.Alerts.Preview
         {
             var viewController = new AlertsViewController();
             viewController.OnImportsSatisfied();
-            var viewModelController = new AlertsViewModelController();
+            var viewModelController = new AlertsViewModelController(null);
             viewModelController.OnImportsSatisfied();
 
             var view = viewController.View;

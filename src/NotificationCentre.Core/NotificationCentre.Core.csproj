@@ -4,11 +4,11 @@
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProjectGuid>{CFAE3C22-A6CD-402F-91C1-7986FF8AC32C}</ProjectGuid>
+    <ProjectGuid>{F687057E-75E9-420A-800A-77B08A3A6F4D}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>NotificationCentre.Interfaces</RootNamespace>
-    <AssemblyName>NotificationCentre.Interfaces</AssemblyName>
+    <RootNamespace>NotificationCentre.Core</RootNamespace>
+    <AssemblyName>NotificationCentre.Core</AssemblyName>
     <TargetFrameworkVersion>v4.5.2</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
   </PropertyGroup>
@@ -31,6 +31,7 @@
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="System" />
+    <Reference Include="System.ComponentModel.Composition" />
     <Reference Include="System.Core" />
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Data.DataSetExtensions" />
@@ -40,11 +41,14 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="INotificationManager.cs" />
-    <Compile Include="INotificationService.cs" />
-    <Compile Include="INotification.cs" />
-    <Compile Include="ISideBarViewService.cs" />
+    <Compile Include="NotificationService.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\NotificationCentre.Interfaces\NotificationCentre.Interfaces.csproj">
+      <Project>{CFAE3C22-A6CD-402F-91C1-7986FF8AC32C}</Project>
+      <Name>NotificationCentre.Interfaces</Name>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

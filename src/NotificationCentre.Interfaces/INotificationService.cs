@@ -6,6 +6,10 @@ namespace NotificationCentre.Interfaces
     {
         void Post(INotification notification);
 
-        IObservable<INotification> ObserveNotifications();
+        IObservable<INotification> ObserveDismissed();
+
+        IObservable<INotification> ObserveTimedOut();
+
+        IObservable<INotification> ObserveActivated();
     }
 }

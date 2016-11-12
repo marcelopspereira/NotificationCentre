@@ -23,6 +23,10 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "NotificationCentre.Interfac
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "NotificationCentre.Tray", "NotificationCentre.Tray\NotificationCentre.Tray.csproj", "{E25CE846-A787-4A8C-9FC6-0D77527F362A}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "NotificationCentre.Transports", "NotificationCentre.Transports.Pipe\NotificationCentre.Transports.csproj", "{EFA7DEB8-DED3-4B8C-AB67-A18CE769CEC2}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "NotificationCentre.Core", "NotificationCentre.Core\NotificationCentre.Core.csproj", "{F687057E-75E9-420A-800A-77B08A3A6F4D}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -61,6 +65,14 @@ Global
 		{E25CE846-A787-4A8C-9FC6-0D77527F362A}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{E25CE846-A787-4A8C-9FC6-0D77527F362A}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{E25CE846-A787-4A8C-9FC6-0D77527F362A}.Release|Any CPU.Build.0 = Release|Any CPU
+		{EFA7DEB8-DED3-4B8C-AB67-A18CE769CEC2}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{EFA7DEB8-DED3-4B8C-AB67-A18CE769CEC2}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{EFA7DEB8-DED3-4B8C-AB67-A18CE769CEC2}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{EFA7DEB8-DED3-4B8C-AB67-A18CE769CEC2}.Release|Any CPU.Build.0 = Release|Any CPU
+		{F687057E-75E9-420A-800A-77B08A3A6F4D}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{F687057E-75E9-420A-800A-77B08A3A6F4D}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{F687057E-75E9-420A-800A-77B08A3A6F4D}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{F687057E-75E9-420A-800A-77B08A3A6F4D}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
