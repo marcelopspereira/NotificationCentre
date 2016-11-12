@@ -19,6 +19,7 @@ namespace NotificationCentre.Transports
         private readonly INotificationService _notificationService;
         private readonly CompositeDisposable _disposable = new CompositeDisposable();
 
+        [ImportingConstructor]
         public TransportModule(ITransportFactory transportFactory, ISchedulerProvider schedulerProvider, INotificationService notificationService)
         {
             _transportFactory = transportFactory;
@@ -35,12 +36,12 @@ namespace NotificationCentre.Transports
         {
             var transport = _transportFactory.Create<JsonNotification>(KnownTransports.Pipes.Server);
 
-            transport.ThrowOnNullOrEmptyTopic()
-                     .Observe(TransportConstants.Topics.Post)
-                     .SubscribeOn(_schedulerProvider.TaskPool)
-                     .ObserveOn(_schedulerProvider.TaskPool)
-                     .Subscribe(notification => _notificationService.Post(notification))
-                     .AddTo(_disposable);
+            //transport.ThrowOnNullOrEmptyTopic()
+            //         .Observe(TransportConstants.Topics.Post)
+            //         .SubscribeOn(_schedulerProvider.TaskPool)
+            //         .ObserveOn(_schedulerProvider.TaskPool)
+            //         .Subscribe(notification => _notificationService.Post(notification))
+            //         .AddTo(_disposable);
         }
     }
 }

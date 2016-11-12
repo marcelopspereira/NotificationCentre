@@ -1,13 +1,8 @@
 ﻿using System;
 using System.ComponentModel.Composition.Hosting;
 using System.Windows;
-using NotificationCentre.Alerts;
-using NotificationCentre.SideBar;
-using NotificationCentre.Transports;
-using NotificationCentre.Tray;
 using Presentation.Bootstrappers;
 using Presentation.Interfaces;
-using Presentation.Interop;
 
 namespace NotificationCentre
 {    
@@ -17,13 +12,7 @@ namespace NotificationCentre
 
         public App()
         {
-            var sideBarCatalog = new AssemblyCatalog(typeof(SideBarViewService).Assembly);
-            var alertsCatalog = new AssemblyCatalog(typeof(AlertsModule).Assembly);
-            var trayCatalog = new AssemblyCatalog(typeof(TrayModule).Assembly);
-            var transportCatalog = new AssemblyCatalog(typeof(TransportModule).Assembly);
-            var presentationCatalog = new AssemblyCatalog(typeof(HideFromAppSwitchService).Assembly);
-
-            var catalog = new AggregateCatalog(sideBarCatalog, alertsCatalog, trayCatalog, presentationCatalog, transportCatalog);
+            var catalog = new DirectoryCatalog(Environment.CurrentDirectory);
 
             var container = new CompositionContainer(catalog);
 

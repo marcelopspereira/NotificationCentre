@@ -4,10 +4,10 @@
     {
         public static class Topics
         {
-            public const string Post = "/notification-centre/post";
-            public const string Activated = "/notification-centre/activated";
-            public const string Dismissed = "/notification-centre/dismissed";
-            public const string TimedOut = "/notification-centre/timedout";
+            public const string Post = "/notificationcentre/post";
+            public const string Activated = "/notificationcentre/activated";
+            public const string Dismissed = "/notificationcentre/dismissed";
+            public const string TimedOut = "/notificationcentre/timedout";
         }
     }
 }
