@@ -76,6 +76,7 @@
     <Compile Include="Controllers\IAlertsViewController.cs" />
     <Compile Include="Controllers\IAlertsViewModelController.cs" />
     <Compile Include="Models\AlertModel.cs" />
+    <Compile Include="Models\AlertModelExtensions.cs" />
     <Compile Include="Models\IAlertModel.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="ViewModels\AlertsViewModel.cs" />

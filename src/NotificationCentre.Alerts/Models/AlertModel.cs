@@ -6,12 +6,24 @@ namespace NotificationCentre.Alerts.Models
 {
     internal sealed class AlertModel : INotifyPropertyChanged, IAlertModel
     {
-        private bool _hasAlert;
+        private string _id;
         private string _title;
         private string _content;
+        private bool _hasAlert;
         private ICommand _timeout;
         private ICommand _dismiss;
         private ICommand _action;
+
+        public AlertModel(string id, string title, string content, bool hasAlert, ICommand timeout, ICommand dismiss, ICommand action)
+        {
+            _id = id;
+            _title = title;
+            _content = content;
+            _hasAlert = hasAlert;
+            _timeout = timeout;
+            _dismiss = dismiss;
+            _action = action;
+        }
 
         public event PropertyChangedEventHandler PropertyChanged;
 
@@ -24,6 +36,19 @@ namespace NotificationCentre.Alerts.Models
                     return;
 
                 _hasAlert = value;
+                PropertyChanged.Raise(this);
+            }
+        }
+
+        public string Id
+        {
+            get { return _id; }
+            set
+            {
+                if (_id == value)
+                    return;
+
+                _id = value;
                 PropertyChanged.Raise(this);
             }
         }

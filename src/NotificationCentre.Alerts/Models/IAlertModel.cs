@@ -6,6 +6,8 @@ namespace NotificationCentre.Alerts.Models
     {
         bool HasAlert { get; set; }
 
+        string Id { get; set; }
+
         string Content { get; set; }
 
         string Title { get; set; }
