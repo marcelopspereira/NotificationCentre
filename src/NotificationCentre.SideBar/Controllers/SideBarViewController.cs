@@ -23,11 +23,16 @@ namespace NotificationCentre.SideBar.Controllers
 
         public void OnImportsSatisfied()
         {
-            _hideFromAppSwitchService.HideFromAppSwitch(View);
-            _hideFromPeekService.HideFromPeek(View);
+            try
+            {
+                _hideFromAppSwitchService.HideFromAppSwitch(View);
+                _hideFromPeekService.HideFromPeek(View);
 
-            View.Height = SystemParameters.WorkArea.Height;
-            View.Left = SystemParameters.WorkArea.Right - View.Width;
+                View.Height = SystemParameters.WorkArea.Height;
+                View.Left = SystemParameters.WorkArea.Right - View.Width;
+            }
+            catch
+            {}
         }
     }
 }

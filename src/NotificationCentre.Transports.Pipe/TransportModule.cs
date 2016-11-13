@@ -39,7 +39,7 @@ namespace NotificationCentre.Transports
                              .Observe(TransportConstants.Topics.Post)
                              .SubscribeOn(_schedulerProvider.TaskPool)
                              .ObserveOn(_schedulerProvider.TaskPool)
-                             .Subscribe(notification => _notificationService.Post(notification))
+                             .Subscribe(notification => _notificationService.Post(notification), ex => {})
                              .AddTo(_disposable);
         }
     }

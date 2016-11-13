@@ -44,7 +44,7 @@ namespace NotificationCentre.SideBar.Controllers
                                 .Select(notification => notification.ToModel())
                                 .SubscribeOn(_schedulerProvider.TaskPool)
                                 .ObserveOn(_schedulerProvider.Dispatcher)
-                                .Subscribe(notificationModel => ViewModel.Notifications.Add(notificationModel))
+                                .Subscribe(notificationModel => ViewModel.Notifications.Add(notificationModel), ex => {})
                                 .AddTo(_disposable);
         }
 
