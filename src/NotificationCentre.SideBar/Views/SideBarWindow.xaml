@@ -199,8 +199,6 @@
                                          PlacementMode="TopAndAlignRightEdges"
                                          StaysOpen="False">
                     <StackPanel>
-                        <Button Content="Settings" />
-                        <Separator />
                         <Button Content="Exit"
                                 Command="{Binding ExitApplication}"/>
                     </StackPanel>
