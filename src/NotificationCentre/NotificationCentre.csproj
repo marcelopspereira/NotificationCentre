@@ -97,16 +97,16 @@
     <Reference Include="System.Xaml">
       <RequiredTargetFramework>4.0</RequiredTargetFramework>
     </Reference>
-    <Reference Include="Transport.Core, Version=0.9.3.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\packages\Transport.Core.0.9.3\lib\net452\Transport.Core.dll</HintPath>
+    <Reference Include="Transport.Core, Version=0.9.4.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\Transport.Core.0.9.4\lib\net452\Transport.Core.dll</HintPath>
       <Private>True</Private>
     </Reference>
-    <Reference Include="Transport.Interfaces, Version=0.9.3.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\packages\Transport.Interfaces.0.9.3\lib\net452\Transport.Interfaces.dll</HintPath>
+    <Reference Include="Transport.Interfaces, Version=0.9.4.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\Transport.Interfaces.0.9.4\lib\net452\Transport.Interfaces.dll</HintPath>
       <Private>True</Private>
     </Reference>
-    <Reference Include="Transport.Pipes, Version=0.9.3.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\packages\Transport.Pipes.0.9.3\lib\net452\Transport.Pipes.dll</HintPath>
+    <Reference Include="Transport.Pipes, Version=0.9.4.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\Transport.Pipes.0.9.4\lib\net452\Transport.Pipes.dll</HintPath>
       <Private>True</Private>
     </Reference>
     <Reference Include="WindowsBase" />
