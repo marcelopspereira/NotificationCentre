@@ -14,12 +14,8 @@ namespace NotificationCentre.Alerts.Models
         private ICommand _dismiss;
         private ICommand _action;
 
-        public AlertModel(string id, string title, string content, bool hasAlert, ICommand timeout, ICommand dismiss, ICommand action)
+        public AlertModel(ICommand timeout, ICommand dismiss, ICommand action)
         {
-            _id = id;
-            _title = title;
-            _content = content;
-            _hasAlert = hasAlert;
             _timeout = timeout;
             _dismiss = dismiss;
             _action = action;

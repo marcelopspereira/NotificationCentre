@@ -70,7 +70,7 @@
                                                         Value="{StaticResource AnimationWidth}" />
                             </DoubleAnimationUsingKeyFrames>
                         </Storyboard>
-                        <Storyboard x:Key="TimingOutStoryboard"
+                        <Storyboard x:Key="TimedOutStoryboard"
                                     TargetName="Card">
                             <DoubleAnimationUsingKeyFrames Storyboard.TargetProperty="Opacity">
                                 <SplineDoubleKeyFrame KeyTime="0:0:4"
@@ -98,7 +98,9 @@
                         <behaviors:AnimateAlertBehavior StartAnimation="{Binding HasAlert}" 
                                                         OpeningStoryboard="{StaticResource OpeningStoryboard}"
                                                         ClosingStoryboard="{StaticResource ClosingStoryboard}"
-                                                        TimingOutStoryboard="{StaticResource TimingOutStoryboard}" />
+                                                        TimedOutStoryboard="{StaticResource TimedOutStoryboard}"
+                                                        TimedOutCommand="{Binding Timeout}"
+                                                        TimedOutCommandParameter="{Binding}"/>
                     </i:Interaction.Behaviors>
                     <materialDesign:Card.RenderTransform>
                         <TranslateTransform X="340" />
@@ -136,7 +138,9 @@
                                 Grid.Column="2"
                                 Foreground="{DynamicResource MaterialDesignBody}"
                                 Style="{DynamicResource MaterialDesignFlatButton}"
-                                Content="DISMISS"/>
+                                Content="DISMISS"
+                                Command="{Binding Dismiss}"
+                                CommandParameter="{Binding}"/>
                     </Grid>
                 </materialDesign:Card>
             </DataTemplate>

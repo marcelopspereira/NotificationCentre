@@ -1,11 +1,9 @@
 ﻿using System;
 using System.Reactive.Linq;
-using System.Threading;
 using System.Windows;
 using Moq;
 using NotificationCentre.Alerts.Controllers;
-using NotificationCentre.Alerts.Models;
-using NotificationCentre.Core;
+using Presentation.Reactive.Concurrency;
 
 namespace NotificationCentre.Alerts.Preview
 {
@@ -13,26 +11,25 @@ namespace NotificationCentre.Alerts.Preview
     {
         protected override void OnStartup(StartupEventArgs e)
         {
-            var notificationManger = new NotificationManager();
+            var alertsQueue = new BlockingAlertsQueue();
+            var schedulerProvider = new DefaultSchedulerProvider();
 
             var viewController = new AlertsViewController();
             viewController.OnImportsSatisfied();
-            var viewModelController = new AlertsViewModelController(notificationManger);
+            var viewModelController = new AlertsViewModelController(alertsQueue, schedulerProvider);
             viewModelController.OnImportsSatisfied();
 
             var view = viewController.View;
             view.DataContext = viewModelController.ViewModel;
             view.Show();
 
-            var alertModel = new Mock<IAlertModel>();
+            var alertModel = new Mock<IAlert>();
             alertModel.Setup(a => a.Title).Returns("Update Available");
             alertModel.Setup(a => a.Content).Returns("Restart to use the new version.");
-            alertModel.Setup(a => a.HasAlert).Returns(true);
 
-            Observable.Interval(TimeSpan.FromSeconds(5))
-                      .ObserveOn(SynchronizationContext.Current)
+            Observable.Interval(TimeSpan.FromSeconds(15))
                       .Select(_ => alertModel.Object)
-                      .Subscribe(alert => viewModelController.ViewModel.Alerts.Add(alert));
+                      .Subscribe(alert => alertsQueue.Enqueue(alert));
         }
     }
 }

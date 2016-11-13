@@ -12,9 +12,13 @@ namespace NotificationCentre.Alerts.Behaviors
 
         public static readonly DependencyProperty ClosingStoryboardProperty = DependencyProperty.Register("ClosingStoryboard", typeof(Storyboard), typeof(AnimateAlertBehavior), new PropertyMetadata(default(Storyboard)));
 
-        public static readonly DependencyProperty TimingOutStoryboardProperty = DependencyProperty.Register("TimingOutStoryboard", typeof(Storyboard), typeof(AnimateAlertBehavior), new PropertyMetadata(default(Storyboard)));
-
         public static readonly DependencyProperty StartAnimationProperty = DependencyProperty.Register("StartAnimation", typeof(bool), typeof(AnimateAlertBehavior), new PropertyMetadata(default(bool), OnStartAnimationChanged));
+
+        public static readonly DependencyProperty TimedOutStoryboardProperty = DependencyProperty.Register("TimedOutStoryboard", typeof(Storyboard), typeof(AnimateAlertBehavior), new PropertyMetadata(default(Storyboard), OnTimedOutStoaryboardChanged));
+
+        public static readonly DependencyProperty TimedOutCommandProperty = DependencyProperty.Register("TimedOutCommand", typeof(ICommand), typeof(AnimateAlertBehavior), new PropertyMetadata(default(ICommand)));
+
+        public static readonly DependencyProperty TimedOutCommandParameterProperty = DependencyProperty.Register("TimedOutCommandParameter", typeof(object), typeof(AnimateAlertBehavior), new PropertyMetadata(default(object)));
 
         public bool StartAnimation
         {
@@ -28,10 +32,22 @@ namespace NotificationCentre.Alerts.Behaviors
             set { SetValue(OpeningStoryboardProperty, value); }
         }
 
-        public Storyboard TimingOutStoryboard
+        public Storyboard TimedOutStoryboard
         {
-            get { return (Storyboard) GetValue(TimingOutStoryboardProperty); }
-            set { SetValue(TimingOutStoryboardProperty, value); }
+            get { return (Storyboard) GetValue(TimedOutStoryboardProperty); }
+            set { SetValue(TimedOutStoryboardProperty, value); }
+        }
+
+        public object TimedOutCommandParameter
+        {
+            get { return GetValue(TimedOutCommandParameterProperty); }
+            set { SetValue(TimedOutCommandParameterProperty, value); }
+        }
+
+        public ICommand TimedOutCommand
+        {
+            get { return (ICommand)GetValue(TimedOutCommandProperty); }
+            set { SetValue(TimedOutCommandProperty, value); }
         }
 
         public Storyboard ClosingStoryboard
@@ -61,13 +77,13 @@ namespace NotificationCentre.Alerts.Behaviors
 
         private void OnMouseLeave(object sender, MouseEventArgs args)
         {
-            TimingOutStoryboard.Resume();
+            TimedOutStoryboard.Resume();
         }
 
         private void OnMouseEnter(object sender, MouseEventArgs args)
         {
-            TimingOutStoryboard.Pause();
-            TimingOutStoryboard.Seek(TimeSpan.Zero);
+            TimedOutStoryboard.Pause();
+            TimedOutStoryboard.Seek(TimeSpan.Zero);
         }
 
         private static void OnOpeningStoryboardChanged(DependencyObject sender, DependencyPropertyChangedEventArgs e)
@@ -80,7 +96,7 @@ namespace NotificationCentre.Alerts.Behaviors
             if (storyboard == null)
                 return;
 
-            storyboard.Completed += (o, args) => behavior.TimingOutStoryboard.Begin();
+            storyboard.Completed += (o, args) => behavior.TimedOutStoryboard.Begin();
         }
 
         private static void OnStartAnimationChanged(DependencyObject sender, DependencyPropertyChangedEventArgs e)
@@ -92,6 +108,28 @@ namespace NotificationCentre.Alerts.Behaviors
             var begin = (bool)e.NewValue;
             if (begin)
                 behavior.OpeningStoryboard.Begin();
+        }
+
+        private static void OnTimedOutStoaryboardChanged(DependencyObject sender, DependencyPropertyChangedEventArgs e)
+        {
+            var behavior = sender as AnimateAlertBehavior;
+            if (behavior == null)
+                return;
+
+            var storyboard = e.NewValue as Storyboard;
+            if (storyboard == null)
+                return;
+
+            storyboard.Completed += (o, args) =>
+            {
+                var parameter = behavior.TimedOutCommandParameter;
+                var command = behavior.TimedOutCommand;
+                if (command == null)
+                    return;
+
+                if (command.CanExecute(parameter))
+                    command.Execute(parameter);
+            };
         }
     }
 }
