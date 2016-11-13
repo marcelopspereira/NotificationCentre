@@ -2,9 +2,11 @@
 using System.Reactive.Linq;
 using System.Threading;
 using System.Windows;
+using NotificationCentre.Core;
 using NotificationCentre.SideBar.Controllers;
 using NotificationCentre.SideBar.Models;
 using Presentation.Interop;
+using Presentation.Reactive.Concurrency;
 
 namespace NotificationCentre.SideBar.Preview
 {
@@ -14,10 +16,12 @@ namespace NotificationCentre.SideBar.Preview
         {
             var hideFromAppSwitch = new HideFromAppSwitchService();
             var hideFromPeekService = new HideFromPeekService();
+            var notificationManager = new NotificationManager();
+            var schedulerProvider = new DefaultSchedulerProvider();
 
             var viewController = new SideBarViewController(hideFromAppSwitch, hideFromPeekService);
             viewController.OnImportsSatisfied();
-            var viewModelController = new SideBarViewModelController(null, null);
+            var viewModelController = new SideBarViewModelController(notificationManager, schedulerProvider);
             viewModelController.OnImportsSatisfied();
 
             var view = viewController.View;

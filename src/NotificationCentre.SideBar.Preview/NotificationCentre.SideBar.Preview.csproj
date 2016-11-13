@@ -145,6 +145,10 @@
     <None Include="App.config" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\NotificationCentre.Core\NotificationCentre.Core.csproj">
+      <Project>{F687057E-75E9-420A-800A-77B08A3A6F4D}</Project>
+      <Name>NotificationCentre.Core</Name>
+    </ProjectReference>
     <ProjectReference Include="..\NotificationCentre.Interfaces\NotificationCentre.Interfaces.csproj">
       <Project>{cfae3c22-a6cd-402f-91c1-7986ff8ac32c}</Project>
       <Name>NotificationCentre.Interfaces</Name>
