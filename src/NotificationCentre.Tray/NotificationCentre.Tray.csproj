@@ -65,6 +65,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="TrayConstants.cs" />
     <Compile Include="TrayModule.cs" />
     <Compile Include="Views\ITrayIcon.cs" />
     <Compile Include="Views\SideBarTrayIcon.cs" />

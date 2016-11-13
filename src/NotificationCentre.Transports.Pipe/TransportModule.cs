@@ -34,14 +34,13 @@ namespace NotificationCentre.Transports
 
         public void Initialize()
         {
-            var transport = _transportFactory.Create<JsonNotification>(KnownTransports.Pipes.Server);
-
-            transport.ThrowOnNullOrEmptyTopic()
-                     .Observe(TransportConstants.Topics.Post)
-                     .SubscribeOn(_schedulerProvider.TaskPool)
-                     .ObserveOn(_schedulerProvider.TaskPool)
-                     .Subscribe(notification => _notificationService.Post(notification))
-                     .AddTo(_disposable);
+            _transportFactory.Create<JsonNotification>(KnownTransports.Pipes.Server)
+                             .ThrowOnNullOrEmptyTopic()
+                             .Observe(TransportConstants.Topics.Post)
+                             .SubscribeOn(_schedulerProvider.TaskPool)
+                             .ObserveOn(_schedulerProvider.TaskPool)
+                             .Subscribe(notification => _notificationService.Post(notification))
+                             .AddTo(_disposable);
         }
     }
 }

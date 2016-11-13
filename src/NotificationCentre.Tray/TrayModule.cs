@@ -25,7 +25,7 @@ namespace NotificationCentre.Tray
 
         public void Initialize()
         {
-            var uri = new Uri("pack://application:,,,/NotificationCentre.Tray;component/Resources/NotificationCentre.ico");
+            var uri = new Uri(TrayConstants.Icon);
             var iconStream = Application.GetResourceStream(uri);
             if (iconStream == null)
                 throw new ArgumentException("Failed to get icon from the application resource stream.");

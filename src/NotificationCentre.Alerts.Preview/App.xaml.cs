@@ -4,19 +4,22 @@ using System.Threading;
 using System.Windows;
 using NotificationCentre.Alerts.Controllers;
 using NotificationCentre.Alerts.Models;
+using NotificationCentre.Core;
 
 namespace NotificationCentre.Alerts.Preview
 {
     /// <summary>
     /// Interaction logic for App.xaml
     /// </summary>
-    public partial class App : Application
+    public partial class App
     {
         protected override void OnStartup(StartupEventArgs e)
         {
+            var notificationManger = new NotificationManager();
+
             var viewController = new AlertsViewController();
             viewController.OnImportsSatisfied();
-            var viewModelController = new AlertsViewModelController(null);
+            var viewModelController = new AlertsViewModelController(notificationManger);
             viewModelController.OnImportsSatisfied();
 
             var view = viewController.View;

@@ -5,12 +5,15 @@ namespace NotificationCentre.Transports
 {
     internal sealed class JsonNotification : INotification
     {
-        public JsonNotification(string title, string content, DateTime timestamp)
+        public JsonNotification(string id, string title, string content, DateTime timestamp)
         {
+            Id = id;
             Title = title;
             Content = content;
             Timestamp = timestamp;
         }
+
+        public string Id { get; }
 
         public string Title { get; }
 

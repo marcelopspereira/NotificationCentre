@@ -73,19 +73,19 @@
                         <Storyboard x:Key="TimingOutStoryboard"
                                     TargetName="Card">
                             <DoubleAnimationUsingKeyFrames Storyboard.TargetProperty="Opacity">
-                                <SplineDoubleKeyFrame KeyTime="0:0:3"
+                                <SplineDoubleKeyFrame KeyTime="0:0:4"
                                                       Value="1" />
-                                <SplineDoubleKeyFrame KeyTime="0:0:5"
+                                <SplineDoubleKeyFrame KeyTime="0:0:6"
                                                       Value="0" />
-                                <SplineDoubleKeyFrame KeyTime="0:0:5"
+                                <SplineDoubleKeyFrame KeyTime="0:0:6"
                                                       Value="1" />
                             </DoubleAnimationUsingKeyFrames>
                             <DoubleAnimationUsingKeyFrames Storyboard.TargetProperty="RenderTransform.(TranslateTransform.X)">
                                 <DiscreteDoubleKeyFrame KeyTime="0:0:0"
                                                         Value="0" />
-                                <DiscreteDoubleKeyFrame KeyTime="0:0:3"
+                                <DiscreteDoubleKeyFrame KeyTime="0:0:4"
                                                         Value="0" />
-                                <EasingDoubleKeyFrame KeyTime="0:0:3.5"
+                                <EasingDoubleKeyFrame KeyTime="0:0:4.5"
                                                       Value="{StaticResource AnimationWidth}">
                                     <EasingDoubleKeyFrame.EasingFunction>
                                         <QuarticEase EasingMode="EaseIn" />
