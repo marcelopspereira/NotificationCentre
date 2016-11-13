@@ -16,14 +16,14 @@ namespace NotificationCentre.SideBar.Controllers
     [PartCreationPolicy(CreationPolicy.NonShared)]
     internal sealed class SideBarViewModelController : IPartImportsSatisfiedNotification, ISideBarViewModelController, IDisposable
     {
-        private readonly INotificationManager _notificationService;
+        private readonly INotificationManager _notiticationManager;
         private readonly ISchedulerProvider _schedulerProvider;
         private readonly CompositeDisposable _disposable = new CompositeDisposable();
 
         [ImportingConstructor]
-        public SideBarViewModelController(INotificationManager notificationService, ISchedulerProvider schedulerProvider)
+        public SideBarViewModelController(INotificationManager notiticationManager, ISchedulerProvider schedulerProvider)
         {
-            _notificationService = notificationService;
+            _notiticationManager = notiticationManager;
             _schedulerProvider = schedulerProvider;
         }
 
@@ -40,7 +40,7 @@ namespace NotificationCentre.SideBar.Controllers
                     new PaletteHelper().SetLightDark(!isLight.Value);
             });
 
-            _notificationService.ObserveNotifications()
+            _notiticationManager.ObserveNotifications()
                                 .Select(notification => notification.ToModel())
                                 .SubscribeOn(_schedulerProvider.TaskPool)
                                 .ObserveOn(_schedulerProvider.Dispatcher)

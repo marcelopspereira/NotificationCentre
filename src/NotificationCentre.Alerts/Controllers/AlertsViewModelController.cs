@@ -7,12 +7,12 @@ namespace NotificationCentre.Alerts.Controllers
     [PartCreationPolicy(CreationPolicy.NonShared)]
     internal sealed class AlertsViewModelController : IPartImportsSatisfiedNotification, IAlertsViewModelController
     {
-        private readonly INotificationManager _notificationService;
+        private readonly INotificationManager _notificationManager;
 
         [ImportingConstructor]
-        public AlertsViewModelController(INotificationManager notificationService)
+        public AlertsViewModelController(INotificationManager notificationManager)
         {
-            _notificationService = notificationService;
+            _notificationManager = notificationManager;
         }
 
         [Export]
