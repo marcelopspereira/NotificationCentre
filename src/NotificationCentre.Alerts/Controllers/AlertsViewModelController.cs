@@ -18,7 +18,7 @@ namespace NotificationCentre.Alerts.Controllers
     {
         private readonly IAlertsQueue _alertsQueue;
         private readonly ISchedulerProvider _schedulerProvider;
-        private readonly ISubject<Unit> _dequeueStream = new Subject<Unit>();
+        private readonly ISubject<Unit> _dequeueStream;
         private readonly CompositeDisposable _disposable = new CompositeDisposable();
         private readonly int _maximumAlerts = 4;
 
@@ -27,6 +27,7 @@ namespace NotificationCentre.Alerts.Controllers
         {
             _alertsQueue = alertsQueue;
             _schedulerProvider = schedulerProvider;
+            _dequeueStream = new ReplaySubject<Unit>(1, _schedulerProvider.TaskPool);
             _disposable.Add((IDisposable)_dequeueStream);
         }
 
