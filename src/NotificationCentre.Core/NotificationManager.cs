@@ -12,5 +12,25 @@ namespace NotificationCentre.Core
         {
             return Observable.Empty<INotification>();
         }
+
+        public void OnNext(INotification notification)
+        {
+            
+        }
+
+        public void OnAction(string id)
+        {
+            
+        }
+
+        public void OnTimeout(string id)
+        {
+            
+        }
+
+        public void OnDismiss(string id)
+        {
+            
+        }
     }
 }

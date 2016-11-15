@@ -108,7 +108,10 @@
     <Reference Include="WindowsBase" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Actions.cs" />
     <Compile Include="Alert.cs" />
+    <Compile Include="AlertAction.cs" />
+    <Compile Include="AlertActionsService.cs" />
     <Compile Include="AlertExtensions.cs" />
     <Compile Include="AlertsModule.cs" />
     <Compile Include="Behaviors\AnimateAlertBehavior.cs" />
@@ -118,6 +121,8 @@
     <Compile Include="Controllers\IAlertsViewController.cs" />
     <Compile Include="Controllers\IAlertsViewModelController.cs" />
     <Compile Include="IAlert.cs" />
+    <Compile Include="IAlertAction.cs" />
+    <Compile Include="IAlertActionsService.cs" />
     <Compile Include="IAlertsQueue.cs" />
     <Compile Include="Models\AlertModel.cs" />
     <Compile Include="Models\AlertModelExtensions.cs" />
@@ -135,6 +140,14 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </DesignDataWithDesignTimeCreatableTypes>
+    <Page Include="Resources\Controls\Button.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Resources\Overrides.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
     <Page Include="Views\AlertsWindow.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>

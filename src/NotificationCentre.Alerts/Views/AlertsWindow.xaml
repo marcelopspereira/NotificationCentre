@@ -28,8 +28,13 @@
         TextOptions.TextRenderingMode="Auto"
         FontFamily="{DynamicResource MaterialDesignFont}">
     <Window.Resources>
-        <system:Double x:Key="AnimationWidth">340</system:Double>
-        <system:Double x:Key="AlertWidth">320</system:Double>
+        <ResourceDictionary>
+            <ResourceDictionary.MergedDictionaries>
+                <ResourceDictionary Source="../Resources/Overrides.xaml"/>
+            </ResourceDictionary.MergedDictionaries>
+            <system:Double x:Key="AnimationWidth">340</system:Double>
+            <system:Double x:Key="AlertWidth">320</system:Double>
+        </ResourceDictionary>
     </Window.Resources>
     <ItemsControl Margin="0,5"
                   ItemsSource="{Binding Alerts}">

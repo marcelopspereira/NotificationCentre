@@ -17,16 +17,18 @@ namespace NotificationCentre.Alerts.Controllers
     internal sealed class AlertsViewModelController : IPartImportsSatisfiedNotification, IAlertsViewModelController, IDisposable
     {
         private readonly IAlertsQueue _alertsQueue;
+        private readonly IAlertActionsService _alertActionsService;
         private readonly ISchedulerProvider _schedulerProvider;
         private readonly ISubject<Unit> _dequeueStream;
         private readonly CompositeDisposable _disposable = new CompositeDisposable();
         private readonly int _maximumAlerts = 4;
 
         [ImportingConstructor]
-        public AlertsViewModelController(IAlertsQueue alertsQueue, ISchedulerProvider schedulerProvider)
+        public AlertsViewModelController(IAlertsQueue alertsQueue, ISchedulerProvider schedulerProvider, IAlertActionsService alertActionsService)
         {
             _alertsQueue = alertsQueue;
             _schedulerProvider = schedulerProvider;
+            _alertActionsService = alertActionsService;
             _dequeueStream = new ReplaySubject<Unit>(1, _schedulerProvider.TaskPool);
             _disposable.Add((IDisposable)_dequeueStream);
         }
@@ -39,18 +41,21 @@ namespace NotificationCentre.Alerts.Controllers
             var timeoutCommand = new DelegateCommand<IAlertModel>(a =>
             {
                 var alert = a.ToAlert();
+                _alertActionsService.OnTimeout(alert);
                 a.Clear();
                 _dequeueStream.OnNext(Unit.Default);
             });
             var dismissCommand = new DelegateCommand<IAlertModel>(a =>
             {
                 var alert = a.ToAlert();
+                _alertActionsService.OnDismiss(alert);
                 a.Clear();
                 _dequeueStream.OnNext(Unit.Default);
             });
             var actionCommand = new DelegateCommand<IAlertModel>(a =>
             {
                 var alert = a.ToAlert();
+                _alertActionsService.OnAction(alert);
                 a.Clear();
                 _dequeueStream.OnNext(Unit.Default);
             });
@@ -61,7 +66,7 @@ namespace NotificationCentre.Alerts.Controllers
                 ViewModel.Alerts.Add(alertModel);
             }
 
-            _dequeueStream.StartWith(Unit.Default)
+            _dequeueStream.StartWith(Unit.Default, Unit.Default, Unit.Default, Unit.Default)
                           .Select(_ => _alertsQueue.Dequeue())
                           .SubscribeOn(_schedulerProvider.TaskPool)
                           .ObserveOn(_schedulerProvider.Dispatcher)

@@ -33,7 +33,7 @@ namespace NotificationCentre.SideBar.Preview
                       .Subscribe(_ => viewModelController.ViewModel.IsOpen = true);
             Observable.Interval(TimeSpan.FromSeconds(5))
                       .ObserveOn(SynchronizationContext.Current)
-                      .Select(_ => new NotificationModel("Update Available", "Restart to use the new version.", DateTime.Now))
+                      .Select(_ => new NotificationModel("id", "Update Available", "Restart to use the new version.", DateTime.Now, null))
                       .Subscribe(alert => viewModelController.ViewModel.Notifications.Insert(0, alert));
             Observable.Timer(TimeSpan.FromSeconds(60))
                       .ObserveOn(SynchronizationContext.Current)

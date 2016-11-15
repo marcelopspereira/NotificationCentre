@@ -13,10 +13,11 @@ namespace NotificationCentre.Alerts.Preview
         {
             var alertsQueue = new BlockingAlertsQueue();
             var schedulerProvider = new DefaultSchedulerProvider();
+            var alertActions = new AlertActionsService(schedulerProvider);
 
             var viewController = new AlertsViewController();
             viewController.OnImportsSatisfied();
-            var viewModelController = new AlertsViewModelController(alertsQueue, schedulerProvider);
+            var viewModelController = new AlertsViewModelController(alertsQueue, schedulerProvider, alertActions);
             viewModelController.OnImportsSatisfied();
 
             var view = viewController.View;

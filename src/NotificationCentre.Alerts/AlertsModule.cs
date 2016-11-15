@@ -14,15 +14,20 @@ namespace NotificationCentre.Alerts
     {
         private readonly INotificationManager _notificationManager;
         private readonly IAlertsQueue _alertsQueue;
+        private readonly IAlertActionsService _alertActionsService;
         private readonly ISchedulerProvider _schedulerProvider;
         private readonly CompositeDisposable _disposable = new CompositeDisposable();
 
         [ImportingConstructor]
-        public AlertsModule(INotificationManager notificationManager, IAlertsQueue alertsQueue, ISchedulerProvider schedulerProvider)
+        public AlertsModule(INotificationManager notificationManager, 
+                            IAlertsQueue alertsQueue, 
+                            ISchedulerProvider schedulerProvider, 
+                            IAlertActionsService alertActionsService)
         {
             _notificationManager = notificationManager;
             _alertsQueue = alertsQueue;
             _schedulerProvider = schedulerProvider;
+            _alertActionsService = alertActionsService;
         }
 
         public void Dispose()
@@ -32,6 +37,29 @@ namespace NotificationCentre.Alerts
 
         public void Initialize()
         {
+            var actions = _alertActionsService.ObserveActions();
+
+            actions.Where(a => a.Action == Actions.Action)
+                   .Select(a => a.Alert)
+                   .SubscribeOn(_schedulerProvider.TaskPool)
+                   .ObserveOn(_schedulerProvider.TaskPool)
+                   .Subscribe(alert => _notificationManager.OnAction(alert.Id))
+                   .AddTo(_disposable);
+
+            actions.Where(a => a.Action == Actions.Dismiss)
+                   .Select(a => a.Alert)
+                   .SubscribeOn(_schedulerProvider.TaskPool)
+                   .ObserveOn(_schedulerProvider.TaskPool)
+                   .Subscribe(alert => _notificationManager.OnDismiss(alert.Id))
+                   .AddTo(_disposable);
+
+            actions.Where(a => a.Action == Actions.Timeout)
+                   .Select(a => a.Alert)
+                   .SubscribeOn(_schedulerProvider.TaskPool)
+                   .ObserveOn(_schedulerProvider.TaskPool)
+                   .Subscribe(alert => _notificationManager.OnTimeout(alert.Id))
+                   .AddTo(_disposable);
+
             _notificationManager.ObserveNotifications()
                                 .Select(notification => notification.ToAlert())
                                 .SubscribeOn(_schedulerProvider.TaskPool)

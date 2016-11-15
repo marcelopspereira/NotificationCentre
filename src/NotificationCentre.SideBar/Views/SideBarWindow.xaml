@@ -148,6 +148,12 @@
                                     Margin="10,0,0,0"
                                     BorderThickness="0 0 0 1"
                                     BorderBrush="{DynamicResource MaterialDesignDivider}">
+                                <i:Interaction.Triggers>
+                                    <i:EventTrigger EventName="MouseDown">
+                                        <i:InvokeCommandAction Command="{Binding Action}"
+                                                               CommandParameter="{Binding}" />
+                                    </i:EventTrigger>
+                                </i:Interaction.Triggers>
                                 <Grid>
                                     <Grid.ColumnDefinitions>
                                         <ColumnDefinition Width="Auto"
