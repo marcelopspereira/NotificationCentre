@@ -3,6 +3,7 @@ using System.Reactive.Linq;
 using System.Windows;
 using Moq;
 using NotificationCentre.Alerts.Controllers;
+using Presentation.Interop;
 using Presentation.Reactive.Concurrency;
 
 namespace NotificationCentre.Alerts.Preview
@@ -11,11 +12,12 @@ namespace NotificationCentre.Alerts.Preview
     {
         protected override void OnStartup(StartupEventArgs e)
         {
+            var hideFromAppSwitch = new HideFromAppSwitchService();
             var alertsQueue = new BlockingAlertsQueue();
             var schedulerProvider = new DefaultSchedulerProvider();
             var alertActions = new AlertActionsService(schedulerProvider);
 
-            var viewController = new AlertsViewController();
+            var viewController = new AlertsViewController(hideFromAppSwitch);
             viewController.OnImportsSatisfied();
             var viewModelController = new AlertsViewModelController(alertsQueue, schedulerProvider, alertActions);
             viewModelController.OnImportsSatisfied();

@@ -2,7 +2,7 @@
 
 namespace NotificationCentre.Alerts.Views
 {
-    internal interface IAlertsWindow : IWindow
+    internal interface IAlertsWindow : IWindowWithHandle
     {
         
     }
