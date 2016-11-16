@@ -17,6 +17,6 @@ namespace NotificationCentre.SideBar.Views
         {
             var helper = new WindowInteropHelper(this);
             return helper.EnsureHandle();
-        }
+        }        
     }
 }
