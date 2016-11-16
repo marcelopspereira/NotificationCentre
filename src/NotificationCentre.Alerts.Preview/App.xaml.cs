@@ -13,11 +13,12 @@ namespace NotificationCentre.Alerts.Preview
         protected override void OnStartup(StartupEventArgs e)
         {
             var hideFromAppSwitch = new HideFromAppSwitchService();
+            var hideFromPeekService = new HideFromPeekService();
             var alertsQueue = new BlockingAlertsQueue();
             var schedulerProvider = new DefaultSchedulerProvider();
             var alertActions = new AlertActionsService(schedulerProvider);
 
-            var viewController = new AlertsViewController(hideFromAppSwitch);
+            var viewController = new AlertsViewController(hideFromAppSwitch, hideFromPeekService);
             viewController.OnImportsSatisfied();
             var viewModelController = new AlertsViewModelController(alertsQueue, schedulerProvider, alertActions);
             viewModelController.OnImportsSatisfied();

@@ -9,11 +9,13 @@ namespace NotificationCentre.Alerts.Controllers
     internal sealed class AlertsViewController : IPartImportsSatisfiedNotification, IAlertsViewController
     {
         private readonly IHideFromAppSwitchService _hideFromAppSwitchService;
+        private readonly IHideFromPeekService _hideFromPeekService;
 
         [ImportingConstructor]
-        public AlertsViewController(IHideFromAppSwitchService hideFromAppSwitchService)
+        public AlertsViewController(IHideFromAppSwitchService hideFromAppSwitchService, IHideFromPeekService hideFromPeekService)
         {
             _hideFromAppSwitchService = hideFromAppSwitchService;
+            _hideFromPeekService = hideFromPeekService;
         }
 
         [Export]
@@ -21,9 +23,15 @@ namespace NotificationCentre.Alerts.Controllers
 
         public void OnImportsSatisfied()
         {
-            _hideFromAppSwitchService.HideFromAppSwitch(View);
+            try
+            {
+                _hideFromAppSwitchService.HideFromAppSwitch(View);
+                _hideFromPeekService.HideFromPeek(View);
 
-            View.Left = SystemParameters.WorkArea.Right - View.Width;
+                View.Left = SystemParameters.WorkArea.Right - View.Width;
+            }
+            catch
+            {}
         }
     }
 }
