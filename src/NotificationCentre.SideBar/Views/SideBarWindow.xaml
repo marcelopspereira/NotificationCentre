@@ -33,6 +33,9 @@
         <converters:EmptyStringToVisibilityConverter x:Key="EmptyStringToVisibilityConverter"
                                                      EmptyState="Collapsed"
                                                      NonEmptyState="Visible"/>
+        <converters:EmptyStringToVisibilityConverter x:Key="StringToVisibilityConverter"
+                                                     EmptyState="Visible"
+                                                     NonEmptyState="Collapsed" />
         <system:Double x:Key="Width">320</system:Double>
         <Storyboard x:Key="EnterAnimation"                    
                     TargetProperty="RenderTransform.(TranslateTransform.X)">
@@ -92,7 +95,6 @@
             <Grid.RowDefinitions>
                 <RowDefinition Height="Auto"/>
                 <RowDefinition Height="*"/>
-                <RowDefinition Height="Auto"/>
             </Grid.RowDefinitions>
             <materialDesign:ColorZone Grid.Row="0" 
                                       Mode="Standard"
@@ -124,6 +126,24 @@
                              MinWidth="200"
                              VerticalAlignment="Center"
                              Text="{Binding SearchString, UpdateSourceTrigger=PropertyChanged}"/>
+                    <materialDesign:PopupBox Grid.Column="2"
+                                             PlacementMode="BottomAndAlignRightEdges"
+                                             StaysOpen="False"
+                                             Visibility="{Binding SearchString, Converter={StaticResource StringToVisibilityConverter}}">
+                        <StackPanel>
+                            <StackPanel Orientation="Horizontal"
+                                        Margin="16">
+                                <TextBlock VerticalAlignment="Center"
+                                           Text="Use Light Theme" />
+                                <ToggleButton Margin="16,0,0,0"
+                                              Command="{Binding SwitchTheme}"
+                                              CommandParameter="{Binding RelativeSource={RelativeSource Self}, Path=IsChecked}" />
+                            </StackPanel>
+                            <Separator />
+                            <Button Content="Exit"
+                                    Command="{Binding ExitApplication}" />
+                        </StackPanel>
+                    </materialDesign:PopupBox>
                     <Button Grid.Column="2" 
                             Visibility="{Binding SearchString, Converter={StaticResource EmptyStringToVisibilityConverter}}"
                             Command="{Binding ClearSearch}"
@@ -178,38 +198,13 @@
                                     <TextBlock Grid.Row="0"
                                                Grid.Column="2"
                                                Text="{Binding Timestamp, StringFormat='{}{0:H:mm}'}"
-                                               ToolTip="{Binding Timestamp}"/>
+                                               ToolTip="{Binding Timestamp}" />
                                 </Grid>
                             </Border>
                         </DataTemplate>
                     </ItemsControl.ItemTemplate>
                 </ItemsControl>
             </ScrollViewer>
-            <Grid Grid.Row="2">
-                <Grid.ColumnDefinitions>
-                    <ColumnDefinition Width="*"/>
-                    <ColumnDefinition Width="Auto"/>
-                    <ColumnDefinition Width="Auto"/>
-                </Grid.ColumnDefinitions>
-                <StackPanel Orientation="Horizontal"
-                            Margin="8">
-                    <TextBlock VerticalAlignment="Center"
-                               Text="Dark" />
-                    <ToggleButton Margin="8,0"
-                                  Command="{Binding SwitchTheme}"
-                                  CommandParameter="{Binding RelativeSource={RelativeSource Self}, Path=IsChecked}" />
-                    <TextBlock VerticalAlignment="Center"
-                               Text="Light" />
-                </StackPanel>
-                <materialDesign:PopupBox Grid.Column="2"
-                                         PlacementMode="TopAndAlignRightEdges"
-                                         StaysOpen="False">
-                    <StackPanel>
-                        <Button Content="Exit"
-                                Command="{Binding ExitApplication}"/>
-                    </StackPanel>
-                </materialDesign:PopupBox>
-            </Grid>
         </Grid>
     </Border>
 </Window>

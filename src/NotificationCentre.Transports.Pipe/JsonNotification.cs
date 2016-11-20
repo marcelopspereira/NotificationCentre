@@ -1,5 +1,6 @@
 ﻿using System;
 using NotificationCentre.Interfaces;
+using Newtonsoft.Json;
 
 namespace NotificationCentre.Transports
 {
@@ -13,12 +14,16 @@ namespace NotificationCentre.Transports
             Timestamp = timestamp;
         }
 
+        [JsonProperty("id")]
         public string Id { get; }
 
+        [JsonProperty("title")]
         public string Title { get; }
 
+        [JsonProperty("content")]
         public string Content { get; }
 
+        [JsonProperty("timestamp")]
         public DateTime Timestamp { get; }
     }
 }

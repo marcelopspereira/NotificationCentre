@@ -34,13 +34,42 @@ namespace NotificationCentre.Transports
 
         public void Initialize()
         {
-            _transportFactory.Create<JsonNotification>(KnownTransports.Pipes.Server)
-                             .ThrowOnNullOrEmptyTopic()
-                             .Observe(TransportConstants.Topics.Post)
-                             .SubscribeOn(_schedulerProvider.TaskPool)
-                             .ObserveOn(_schedulerProvider.TaskPool)
-                             .Subscribe(notification => _notificationService.Post(notification), ex => {})
-                             .AddTo(_disposable);
+            var transport = _transportFactory.Create<JsonNotification>(KnownTransports.Pipes.Server)
+                                             .ThrowOnNullOrEmptyTopic();
+
+            transport.Observe(TransportConstants.Topics.Post)
+                     .SubscribeOn(_schedulerProvider.TaskPool)
+                     .ObserveOn(_schedulerProvider.TaskPool)
+                     .Subscribe(notification => _notificationService.Post(notification), ex => {})
+                     .AddTo(_disposable);
+
+            var activated = transport.Publish(TransportConstants.Topics.Activated);
+
+            _notificationService.ObserveActivated()
+                                .Select(notification => notification.ToJsonNotification())
+                                .SubscribeOn(_schedulerProvider.TaskPool)
+                                .ObserveOn(_schedulerProvider.TaskPool)
+                                .Subscribe(activated)
+                                .AddTo(_disposable);
+
+            var dismissed = transport.Publish(TransportConstants.Topics.Dismissed);
+
+            _notificationService.ObserveDismissed()
+                                .Select(notification => notification.ToJsonNotification())
+                                .SubscribeOn(_schedulerProvider.TaskPool)
+                                .ObserveOn(_schedulerProvider.TaskPool)
+                                .Subscribe(dismissed)
+                                .AddTo(_disposable);
+
+            var timedOut = transport.Publish(TransportConstants.Topics.TimedOut);
+
+            _notificationService.ObserveTimedOut()
+                                .Select(notification => notification.ToJsonNotification())
+                                .SubscribeOn(_schedulerProvider.TaskPool)
+                                .ObserveOn(_schedulerProvider.TaskPool)
+                                .Subscribe(timedOut)
+                                .AddTo(_disposable);
+
         }
     }
 }

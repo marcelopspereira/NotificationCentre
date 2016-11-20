@@ -1,6 +1,7 @@
 ﻿using System;
 using System.ComponentModel.Composition;
 using NotificationCentre.Interfaces;
+using System.Reactive.Linq;
 
 namespace NotificationCentre.Core
 {
@@ -25,17 +26,17 @@ namespace NotificationCentre.Core
 
         public IObservable<INotification> ObserveDismissed()
         {
-            throw new NotImplementedException();
+            return Observable.Empty<INotification>();
         }
 
         public IObservable<INotification> ObserveTimedOut()
         {
-            throw new NotImplementedException();
+            return Observable.Empty<INotification>();
         }
 
         public IObservable<INotification> ObserveActivated()
         {
-            throw new NotImplementedException();
+            return Observable.Empty<INotification>();
         }
     }
 }
