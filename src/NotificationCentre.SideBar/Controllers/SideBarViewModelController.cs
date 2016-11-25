@@ -10,12 +10,14 @@ using NotificationCentre.SideBar.ViewModels;
 using Presentation.Commands;
 using Presentation.Core;
 using Presentation.Reactive.Concurrency;
+using NLog;
 
 namespace NotificationCentre.SideBar.Controllers
 {
     [PartCreationPolicy(CreationPolicy.NonShared)]
     internal sealed class SideBarViewModelController : IPartImportsSatisfiedNotification, ISideBarViewModelController, IDisposable
     {
+        private readonly ILogger _logger = LogManager.GetCurrentClassLogger(); 
         private readonly INotificationManager _notificationManager;
         private readonly ISchedulerProvider _schedulerProvider;
         private readonly CompositeDisposable _disposable = new CompositeDisposable();
@@ -49,7 +51,7 @@ namespace NotificationCentre.SideBar.Controllers
                                 .Select(notification => notification.ToModel(actionCommand))
                                 .SubscribeOn(_schedulerProvider.TaskPool)
                                 .ObserveOn(_schedulerProvider.Dispatcher)
-                                .Subscribe(notificationModel => ViewModel.Notifications.Add(notificationModel), ex => {})
+                                .Subscribe(notificationModel => ViewModel.Notifications.Add(notificationModel), ex => _logger.Error(ex))
                                 .AddTo(_disposable);
         }
 

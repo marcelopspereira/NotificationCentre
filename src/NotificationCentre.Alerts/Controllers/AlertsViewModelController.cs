@@ -10,12 +10,14 @@ using NotificationCentre.Alerts.ViewModels;
 using Presentation.Commands;
 using Presentation.Core;
 using Presentation.Reactive.Concurrency;
+using NLog;
 
 namespace NotificationCentre.Alerts.Controllers
 {
     [PartCreationPolicy(CreationPolicy.NonShared)]
     internal sealed class AlertsViewModelController : IPartImportsSatisfiedNotification, IAlertsViewModelController, IDisposable
     {
+        private readonly ILogger _logger = LogManager.GetCurrentClassLogger();
         private readonly IAlertsQueue _alertsQueue;
         private readonly IAlertActionsService _alertActionsService;
         private readonly ISchedulerProvider _schedulerProvider;
@@ -75,7 +77,7 @@ namespace NotificationCentre.Alerts.Controllers
                               ViewModel.Alerts
                                        .FirstOrDefault(a => !a.HasAlert)
                                        ?.Update(alert);
-                          })
+                          }, ex => _logger.Error(ex))
                           .AddTo(_disposable);
         }
 

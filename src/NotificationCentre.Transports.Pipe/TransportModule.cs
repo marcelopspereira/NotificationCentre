@@ -8,12 +8,14 @@ using Presentation.Interfaces;
 using Presentation.Reactive.Concurrency;
 using Transport.Core;
 using Transport.Interfaces;
+using NLog;
 
 namespace NotificationCentre.Transports
 {
     [Export(typeof(IModule))]
     internal sealed class TransportModule : IModule
     {
+        private readonly ILogger _logger = LogManager.GetCurrentClassLogger();
         private readonly ITransportFactory _transportFactory;
         private readonly ISchedulerProvider _schedulerProvider;
         private readonly INotificationService _notificationService;
@@ -40,7 +42,8 @@ namespace NotificationCentre.Transports
             transport.Observe(TransportConstants.Topics.Post)
                      .SubscribeOn(_schedulerProvider.TaskPool)
                      .ObserveOn(_schedulerProvider.TaskPool)
-                     .Subscribe(notification => _notificationService.Post(notification), ex => {})
+                     .Subscribe(notification => _notificationService.Post(notification), 
+                                ex => _logger.Error(ex))
                      .AddTo(_disposable);
 
             var activated = transport.Publish(TransportConstants.Topics.Activated);
@@ -69,7 +72,6 @@ namespace NotificationCentre.Transports
                                 .ObserveOn(_schedulerProvider.TaskPool)
                                 .Subscribe(timedOut)
                                 .AddTo(_disposable);
-
         }
     }
 }
