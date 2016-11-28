@@ -1,6 +1,5 @@
 ﻿using System;
 using System.Reactive;
-using System.Reactive.Concurrency;
 using System.Reactive.Disposables;
 using System.Reactive.Linq;
 using System.Reactive.Subjects;
@@ -29,7 +28,7 @@ namespace NotificationCentre.SideBar.Behaviors
         protected override void OnAttached()
         {
             _refreshView.Throttle(_throttlePeriod)
-                        .ObserveOn(DispatcherScheduler.Current)
+                        .ObserveOn(Dispatcher)
                         .Select(_ => AssociatedObject.View)
                         .Subscribe(view => view.Refresh())
                         .AddTo(_disposable);

@@ -2,12 +2,15 @@
 using System.Windows;
 using NotificationCentre.SideBar.Views;
 using Presentation.Interfaces;
+using NLog;
+using System;
 
 namespace NotificationCentre.SideBar.Controllers
 {
     [PartCreationPolicy(CreationPolicy.NonShared)]
     internal sealed class SideBarViewController : ISideBarViewController, IPartImportsSatisfiedNotification
     {
+        private readonly ILogger _logger = LogManager.GetCurrentClassLogger();
         private readonly IHideFromAppSwitchService _hideFromAppSwitchService;
         private readonly IHideFromPeekService _hideFromPeekService;
 
@@ -31,8 +34,10 @@ namespace NotificationCentre.SideBar.Controllers
                 View.Height = SystemParameters.WorkArea.Height;
                 View.Left = SystemParameters.WorkArea.Right - View.Width;
             }
-            catch
-            {}
+            catch (Exception ex)
+            {
+                _logger.Error(ex);
+            }
         }
     }
 }

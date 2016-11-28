@@ -21,6 +21,7 @@ namespace NotificationCentre.SideBar
         private readonly ISideBarWindow _view;
         private readonly ISideBarViewModel _viewModel;
         private readonly CompositeDisposable _disposable = new CompositeDisposable();
+        private readonly TimeSpan _throttleInterval = TimeSpan.FromMilliseconds(150);
 
         [ImportingConstructor]
         public SideBarViewService(ISideBarWindow view, ISideBarViewModel viewModel, ISchedulerProvider schedulerProvider)
@@ -53,7 +54,7 @@ namespace NotificationCentre.SideBar
 
         public void OnImportsSatisfied()
         {
-            _hideStream.Throttle(TimeSpan.FromMilliseconds(150), _schedulerProvider.TaskPool)
+            _hideStream.Throttle(_throttleInterval, _schedulerProvider.TaskPool)
                        .ObserveOn(_schedulerProvider.Dispatcher)
                        .Subscribe(_ => _viewModel.IsOpen = false)
                        .AddTo(_disposable);
