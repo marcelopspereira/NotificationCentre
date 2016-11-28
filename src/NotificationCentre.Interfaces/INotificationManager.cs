@@ -6,6 +6,12 @@ namespace NotificationCentre.Interfaces
     {
         IObservable<INotification> ObserveNotifications();
 
+        IObservable<INotificationAction> ObservedActivated();
+
+        IObservable<INotificationAction> ObservedDismissed();
+
+        IObservable<INotificationAction> ObservedTimedout();
+
         void OnNext(INotification notification);
 
         void OnAction(string id);

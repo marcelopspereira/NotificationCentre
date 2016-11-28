@@ -43,6 +43,7 @@
     <Compile Include="INotificationManager.cs" />
     <Compile Include="INotificationService.cs" />
     <Compile Include="INotification.cs" />
+    <Compile Include="INotificationAction.cs" />
     <Compile Include="ISideBarViewService.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>

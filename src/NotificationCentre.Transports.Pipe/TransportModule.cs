@@ -36,17 +36,19 @@ namespace NotificationCentre.Transports
 
         public void Initialize()
         {
-            var transport = _transportFactory.Create<JsonNotification>(KnownTransports.Pipes.Server)
-                                             .ThrowOnNullOrEmptyTopic();
+            _transportFactory.Create<JsonNotification>(KnownTransports.Pipes.Server)
+                             .ThrowOnNullOrEmptyTopic()
+                             .Observe(TransportConstants.Topics.Post)
+                             .SubscribeOn(_schedulerProvider.TaskPool)
+                             .ObserveOn(_schedulerProvider.TaskPool)
+                             .Subscribe(notification => _notificationService.Post(notification), 
+                                        ex => _logger.Error(ex))
+                             .AddTo(_disposable);
 
-            transport.Observe(TransportConstants.Topics.Post)
-                     .SubscribeOn(_schedulerProvider.TaskPool)
-                     .ObserveOn(_schedulerProvider.TaskPool)
-                     .Subscribe(notification => _notificationService.Post(notification), 
-                                ex => _logger.Error(ex))
-                     .AddTo(_disposable);
+            var publishTransport = _transportFactory.Create<JsonNotificationAction>(KnownTransports.Pipes.Server)
+                                                    .ThrowOnNullOrEmptyTopic();
 
-            var activated = transport.Publish(TransportConstants.Topics.Activated);
+            var activated = publishTransport.Publish(TransportConstants.Topics.Activated);
 
             _notificationService.ObserveActivated()
                                 .Select(notification => notification.ToJsonNotification())
@@ -55,7 +57,7 @@ namespace NotificationCentre.Transports
                                 .Subscribe(activated)
                                 .AddTo(_disposable);
 
-            var dismissed = transport.Publish(TransportConstants.Topics.Dismissed);
+            var dismissed = publishTransport.Publish(TransportConstants.Topics.Dismissed);
 
             _notificationService.ObserveDismissed()
                                 .Select(notification => notification.ToJsonNotification())
@@ -64,7 +66,7 @@ namespace NotificationCentre.Transports
                                 .Subscribe(dismissed)
                                 .AddTo(_disposable);
 
-            var timedOut = transport.Publish(TransportConstants.Topics.TimedOut);
+            var timedOut = publishTransport.Publish(TransportConstants.Topics.TimedOut);
 
             _notificationService.ObserveTimedOut()
                                 .Select(notification => notification.ToJsonNotification())

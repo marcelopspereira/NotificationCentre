@@ -1,7 +1,6 @@
 ﻿using System;
 using System.ComponentModel.Composition;
 using NotificationCentre.Interfaces;
-using System.Reactive.Linq;
 
 namespace NotificationCentre.Core
 {
@@ -24,19 +23,19 @@ namespace NotificationCentre.Core
             _notificationManager.OnNext(notification);
         }
 
-        public IObservable<INotification> ObserveDismissed()
+        public IObservable<INotificationAction> ObserveDismissed()
         {
-            return Observable.Empty<INotification>();
+            return _notificationManager.ObservedDismissed();
         }
 
-        public IObservable<INotification> ObserveTimedOut()
+        public IObservable<INotificationAction> ObserveTimedOut()
         {
-            return Observable.Empty<INotification>();
+            return _notificationManager.ObservedTimedout();
         }
 
-        public IObservable<INotification> ObserveActivated()
+        public IObservable<INotificationAction> ObserveActivated()
         {
-            return Observable.Empty<INotification>();
+            return _notificationManager.ObservedActivated();
         }
     }
 }
